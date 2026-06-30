@@ -13,6 +13,7 @@ import Footer from "@/components/Footer";
 import CartSidebar from "@/components/CartSidebar";
 import Toast from "@/components/Toast";
 import ScrollToTop from "@/components/ScrollToTop";
+import CookieConsent from "@/components/CookieConsent";
 
 export default function Home() {
   return (
@@ -30,6 +31,7 @@ export default function Home() {
       <CartSidebar />
       <Toast />
       <ScrollToTop />
+      <CookieConsent />
     </main>
   );
 }
