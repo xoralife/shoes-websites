@@ -7,6 +7,10 @@ import FeatureStrip from "@/components/FeatureStrip";
 import Categories from "@/components/Categories";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import PromoBanner from "@/components/PromoBanner";
+import BrandStory from "@/components/BrandStory";
+import TrustBadges from "@/components/TrustBadges";
+import BundleOffer from "@/components/BundleOffer";
+import InstagramFeed from "@/components/InstagramFeed";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import FAQ from "@/components/FAQ";
 import Testimonials from "@/components/Testimonials";
@@ -29,9 +33,13 @@ export default function Home() {
       <FeatureStrip />
       <Categories />
       <FeaturedProducts />
+      <BrandStory />
+      <BundleOffer />
+      <TrustBadges />
       <PromoBanner />
       <Testimonials />
       <FAQ />
+      <InstagramFeed />
       <RecentlyViewed />
       <Newsletter />
       <Footer />
