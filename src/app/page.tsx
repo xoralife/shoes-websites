@@ -1,0 +1,31 @@
+"use client";
+
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import FeatureStrip from "@/components/FeatureStrip";
+import Categories from "@/components/Categories";
+import FeaturedProducts from "@/components/FeaturedProducts";
+import PromoBanner from "@/components/PromoBanner";
+import Testimonials from "@/components/Testimonials";
+import Newsletter from "@/components/Newsletter";
+import Footer from "@/components/Footer";
+import CartSidebar from "@/components/CartSidebar";
+import Toast from "@/components/Toast";
+
+export default function Home() {
+  return (
+    <main className="min-h-screen">
+      <Header />
+      <Hero />
+      <FeatureStrip />
+      <Categories />
+      <FeaturedProducts />
+      <PromoBanner />
+      <Testimonials />
+      <Newsletter />
+      <Footer />
+      <CartSidebar />
+      <Toast />
+    </main>
+  );
+}
