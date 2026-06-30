@@ -14,6 +14,13 @@ import InstagramFeed from "@/components/InstagramFeed";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import FAQ from "@/components/FAQ";
 import Testimonials from "@/components/Testimonials";
+import RewardPoints from "@/components/RewardPoints";
+import GiftCard from "@/components/GiftCard";
+import ReferralProgram from "@/components/ReferralProgram";
+import ReturnPolicy from "@/components/ReturnPolicy";
+import ShippingInfo from "@/components/ShippingInfo";
+import OrderTracking from "@/components/OrderTracking";
+import LiveChat from "@/components/LiveChat";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import CartSidebar from "@/components/CartSidebar";
@@ -41,7 +48,14 @@ export default function Home() {
       <FAQ />
       <InstagramFeed />
       <RecentlyViewed />
+      <RewardPoints />
+      <GiftCard />
+      <ReferralProgram />
+      <ReturnPolicy />
+      <ShippingInfo />
+      <OrderTracking />
       <Newsletter />
+      <LiveChat />
       <Footer />
       <CartSidebar />
       <Toast />
