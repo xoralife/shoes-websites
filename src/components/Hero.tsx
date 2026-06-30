@@ -15,9 +15,9 @@ export default function Hero() {
             </span>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-              Step Into
+              <span className="inline-block text-reveal overflow-hidden pr-1">Step Into</span>
               <br />
-              <span className="bg-gradient-to-r from-[#E94560] to-[#FF6B6B] bg-clip-text text-transparent">
+              <span className="inline-block bg-gradient-to-r from-[#E94560] via-[#FF6B6B] to-[#E94560] bg-clip-text text-transparent animate-gradient text-reveal-delay overflow-hidden pr-1">
                 The Future
               </span>
             </h1>
