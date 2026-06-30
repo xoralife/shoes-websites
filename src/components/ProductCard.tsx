@@ -61,9 +61,16 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
         </button>
 
-        <span className="absolute top-3 left-3 px-2.5 py-1 bg-[#1A1A2E]/80 text-white text-xs font-medium rounded-full backdrop-blur-sm">
-          {product.category}
-        </span>
+        <div className="absolute top-3 left-3 flex flex-col gap-1">
+          <span className="px-2.5 py-1 bg-[#1A1A2E]/80 text-white text-xs font-medium rounded-full backdrop-blur-sm">
+            {product.category}
+          </span>
+          {product.originalPrice > product.price && (
+            <span className="px-2.5 py-1 bg-[#E94560] text-white text-xs font-bold rounded-full">
+              -{Math.round((1 - product.price / product.originalPrice) * 100)}%
+            </span>
+          )}
+        </div>
 
         <button
           onClick={() => setShowQuickView(true)}
