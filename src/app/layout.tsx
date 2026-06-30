@@ -8,6 +8,12 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   title: "SOLEMATE - Premium Shoes Store",
   description: "Step Into The Future - Premium sneakers crafted for comfort & style",
+  manifest: "/manifest.json",
+  openGraph: {
+    title: "SOLEMATE - Premium Shoes Store",
+    description: "Step Into The Future - Premium sneakers crafted for comfort & style",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
