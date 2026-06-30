@@ -1,6 +1,6 @@
 "use client";
 
-import { Heart, Star, ShoppingBag, Eye } from "lucide-react";
+import { Heart, Star, ShoppingBag, Eye, Share2 } from "lucide-react";
 import { useCart, type Product } from "@/context/CartContext";
 import { useState } from "react";
 import QuickViewModal from "./QuickViewModal";
@@ -50,16 +50,24 @@ export default function ProductCard({ product }: ProductCardProps) {
           </svg>
         </div>
 
-        <button
-          onClick={() => toggleWishlist(product.id)}
-          className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all"
-          aria-label="Toggle wishlist"
-        >
-          <Heart
-            size={18}
-            className={isWishlisted ? "fill-[#E94560] text-[#E94560]" : "text-[#6C757D]"}
-          />
-        </button>
+        <div className="absolute top-3 right-3 flex flex-col gap-1.5">
+          <button
+            onClick={() => toggleWishlist(product.id)}
+            className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all"
+            aria-label="Toggle wishlist"
+          >
+            <Heart
+              size={18}
+              className={isWishlisted ? "fill-[#E94560] text-[#E94560]" : "text-[#6C757D]"}
+            />
+          </button>
+          <button
+            className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all"
+            aria-label="Share product"
+          >
+            <Share2 size={15} className="text-[#6C757D]" />
+          </button>
+        </div>
 
         <div className="absolute top-3 left-3 flex flex-col gap-1">
           <span className="px-2.5 py-1 bg-[#1A1A2E]/80 text-white text-xs font-medium rounded-full backdrop-blur-sm">
@@ -91,6 +99,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="flex items-center gap-1">
           {renderStars(product.rating)}
           <span className="text-xs text-[#6C757D] ml-1">{product.rating}</span>
+          <span className="text-xs text-[#6C757D] ml-1">({Math.floor(Math.random() * 200) + 20} reviews)</span>
         </div>
 
         <div className="flex items-center gap-2">
