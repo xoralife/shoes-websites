@@ -34,7 +34,7 @@ export default function PromoBanner() {
             { label: "Seconds", value: seconds },
           ].map(({ label, value }) => (
             <div key={label} className="text-center">
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center countdown-pulse">
                 <span className="text-2xl md:text-3xl font-bold text-white">{pad(value)}</span>
               </div>
               <p className="text-white/70 text-xs mt-2 uppercase tracking-wider">{label}</p>
