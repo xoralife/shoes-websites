@@ -1,7 +1,9 @@
 "use client";
 
-import { Heart, Star, ShoppingBag } from "lucide-react";
+import { Heart, Star, ShoppingBag, Eye } from "lucide-react";
 import { useCart, type Product } from "@/context/CartContext";
+import { useState } from "react";
+import QuickViewModal from "./QuickViewModal";
 
 interface ProductCardProps {
   product: Product;
@@ -9,6 +11,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart, toggleWishlist, wishlist } = useCart();
+  const [showQuickView, setShowQuickView] = useState(false);
   const isWishlisted = wishlist.includes(product.id);
 
   const renderStars = (rating: number) => {
@@ -61,7 +64,19 @@ export default function ProductCard({ product }: ProductCardProps) {
         <span className="absolute top-3 left-3 px-2.5 py-1 bg-[#1A1A2E]/80 text-white text-xs font-medium rounded-full backdrop-blur-sm">
           {product.category}
         </span>
+
+        <button
+          onClick={() => setShowQuickView(true)}
+          className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
+          aria-label="Quick view"
+        >
+          <Eye size={16} className="text-[#1A1A2E]" />
+        </button>
       </div>
+
+      {showQuickView && (
+        <QuickViewModal product={product} onClose={() => setShowQuickView(false)} />
+      )}
 
       <div className="p-5 space-y-3">
         <h3 className="font-semibold text-[#16213E] text-lg">{product.name}</h3>
