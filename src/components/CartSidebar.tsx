@@ -1,11 +1,11 @@
 "use client";
 
-import { X, ShoppingBag, Trash2 } from "lucide-react";
+import { X, ShoppingBag, Trash2, Plus, Minus } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useEffect } from "react";
 
 export default function CartSidebar() {
-  const { cart, isCartOpen, closeCart, removeFromCart, cartTotal } = useCart();
+  const { cart, isCartOpen, closeCart, removeFromCart, incrementQuantity, decrementQuantity, cartTotal } = useCart();
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -71,10 +71,26 @@ export default function CartSidebar() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="font-medium text-[#16213E] text-sm truncate">{item.name}</h4>
-                    <p className="text-xs text-[#6C757D]">Qty: {item.quantity}</p>
-                    <p className="font-semibold text-[#16213E] text-sm">
+                    <p className="font-semibold text-[#16213E] text-sm mt-1">
                       ${(item.price * item.quantity).toFixed(2)}
                     </p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <button
+                        onClick={() => decrementQuantity(item.id)}
+                        className="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors"
+                        aria-label="Decrease quantity"
+                      >
+                        <Minus size={12} />
+                      </button>
+                      <span className="text-sm font-medium w-5 text-center">{item.quantity}</span>
+                      <button
+                        onClick={() => incrementQuantity(item.id)}
+                        className="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors"
+                        aria-label="Increase quantity"
+                      >
+                        <Plus size={12} />
+                      </button>
+                    </div>
                   </div>
                   <button
                     onClick={() => removeFromCart(item.id)}
