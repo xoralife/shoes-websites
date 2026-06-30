@@ -1,0 +1,10 @@
+{
+  "name": "SOLEMATE - Premium Shoes Store",
+  "short_name": "SOLEMATE",
+  "description": "Premium sneakers crafted for comfort & style",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F9FA",
+  "theme_color": "#1A1A2E",
+  "icons": []
+}
