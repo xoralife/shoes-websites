@@ -15,9 +15,9 @@ export default function FeatureStrip() {
           {features.map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="flex items-center gap-4 p-4 rounded-xl hover:bg-[#F8F9FA] transition-colors duration-300"
+              className="group flex items-center gap-4 p-4 rounded-xl hover:bg-[#F8F9FA] transition-all duration-300 hover:shadow-md"
             >
-              <div className="w-12 h-12 rounded-full bg-[#E94560]/10 flex items-center justify-center shrink-0">
+              <div className="w-12 h-12 rounded-full bg-[#E94560]/10 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
                 <Icon size={22} className="text-[#E94560]" />
               </div>
               <div>
