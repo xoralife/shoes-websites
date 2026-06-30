@@ -7,6 +7,7 @@ import FeatureStrip from "@/components/FeatureStrip";
 import Categories from "@/components/Categories";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import PromoBanner from "@/components/PromoBanner";
+import RecentlyViewed from "@/components/RecentlyViewed";
 import Testimonials from "@/components/Testimonials";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
@@ -26,6 +27,7 @@ export default function Home() {
       <FeaturedProducts />
       <PromoBanner />
       <Testimonials />
+      <RecentlyViewed />
       <Newsletter />
       <Footer />
       <CartSidebar />
