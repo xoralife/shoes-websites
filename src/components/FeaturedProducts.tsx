@@ -1,6 +1,7 @@
 "use client";
 
 import ProductCard from "./ProductCard";
+import ProductFilters from "./ProductFilters";
 import type { Product } from "@/context/CartContext";
 
 const products: Product[] = [
@@ -26,6 +27,7 @@ export default function FeaturedProducts() {
           </p>
         </div>
 
+        <ProductFilters />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {products.map((product, i) => (
             <div key={product.id} className={`animate-slide-up stagger-${i + 1}`}>
