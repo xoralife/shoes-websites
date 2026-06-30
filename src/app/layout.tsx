@@ -7,12 +7,19 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "SOLEMATE - Premium Shoes Store",
-  description: "Step Into The Future - Premium sneakers crafted for comfort & style",
+  description: "Step Into The Future - Premium sneakers crafted for comfort & style. Shop the latest collection of sneakers for men, women, and kids.",
+  keywords: ["sneakers", "shoes", "footwear", "fashion", "SOLEMATE", "premium shoes"],
   manifest: "/manifest.json",
   openGraph: {
     title: "SOLEMATE - Premium Shoes Store",
     description: "Step Into The Future - Premium sneakers crafted for comfort & style",
     type: "website",
+    siteName: "SOLEMATE",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SOLEMATE - Premium Shoes Store",
+    description: "Step Into The Future - Premium sneakers crafted for comfort & style",
   },
 };
 
