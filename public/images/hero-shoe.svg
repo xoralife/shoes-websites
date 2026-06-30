@@ -1,0 +1,12 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <path d="M120 280 Q100 250 110 210 Q120 170 160 160 L240 150 Q280 145 290 170 Q300 195 280 220 L260 250 Q240 280 220 290 Q180 310 150 300 Q120 290 120 280Z" fill="url(#shoeGradient)" stroke="white" stroke-width="2"/>
+  <path d="M160 160 L180 130 Q190 115 210 120 L240 125 Q255 130 250 145 L240 155" fill="url(#shoeGradient)" stroke="white" stroke-width="2"/>
+  <circle cx="140" cy="270" r="20" fill="none" stroke="white" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="260" cy="250" r="15" fill="none" stroke="white" stroke-width="1.5" opacity="0.5"/>
+  <defs>
+    <linearGradient id="shoeGradient" x1="100" y1="120" x2="300" y2="300">
+      <stop offset="0%" stop-color="#E94560"/>
+      <stop offset="100%" stop-color="#FF6B6B"/>
+    </linearGradient>
+  </defs>
+</svg>
