@@ -2,9 +2,18 @@
 
 import { X, ShoppingBag, Trash2 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { useEffect } from "react";
 
 export default function CartSidebar() {
   const { cart, isCartOpen, closeCart, removeFromCart, cartTotal } = useCart();
+
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && isCartOpen) closeCart();
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [isCartOpen, closeCart]);
 
   return (
     <>
