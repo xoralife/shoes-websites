@@ -27,6 +27,7 @@ interface CartContextType {
   toggleWishlist: (id: number) => void;
   openCart: () => void;
   closeCart: () => void;
+  dismissToast: () => void;
   cartCount: number;
   cartTotal: number;
 }
@@ -86,6 +87,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const openCart = useCallback(() => setIsCartOpen(true), []);
   const closeCart = useCallback(() => setIsCartOpen(false), []);
+  const dismissToast = useCallback(() => setIsToastVisible(false), []);
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const cartTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
@@ -103,6 +105,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         toggleWishlist,
         openCart,
         closeCart,
+        dismissToast,
         cartCount,
         cartTotal,
       }}
