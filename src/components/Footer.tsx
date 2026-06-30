@@ -45,6 +45,13 @@ export default function Footer() {
                 </a>
               ))}
             </div>
+            <div className="flex gap-2 mt-4 flex-wrap">
+              {["Visa", "MC", "Amex", "PayPal", "Apple Pay"].map((p) => (
+                <span key={p} className="px-3 py-1.5 bg-white/5 rounded-lg text-xs text-gray-400 font-medium border border-white/5">
+                  {p}
+                </span>
+              ))}
+            </div>
           </div>
 
           {footerSections.map(({ title, links }) => (
