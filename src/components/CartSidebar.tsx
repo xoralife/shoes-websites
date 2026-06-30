@@ -3,6 +3,7 @@
 import { X, ShoppingBag, Trash2, Plus, Minus } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useEffect } from "react";
+import CouponInput from "./CouponInput";
 
 export default function CartSidebar() {
   const { cart, isCartOpen, closeCart, removeFromCart, incrementQuantity, decrementQuantity, cartTotal } = useCart();
@@ -107,6 +108,7 @@ export default function CartSidebar() {
 
         {cart.length > 0 && (
           <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-100 bg-white">
+            <CouponInput />
             <div className="flex items-center justify-between mb-4">
               <span className="font-semibold text-[#16213E]">Total</span>
               <span className="text-xl font-bold text-[#16213E]">${cartTotal.toFixed(2)}</span>
