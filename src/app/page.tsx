@@ -15,12 +15,14 @@ import Footer from "@/components/Footer";
 import CartSidebar from "@/components/CartSidebar";
 import Toast from "@/components/Toast";
 import ScrollToTop from "@/components/ScrollToTop";
+import ScrollProgress from "@/components/ScrollProgress";
 import CookieConsent from "@/components/CookieConsent";
 import NewsletterPopup from "@/components/NewsletterPopup";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
+      <ScrollProgress />
       <Header />
       <Hero />
       <BrandsStrip />
