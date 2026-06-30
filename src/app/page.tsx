@@ -15,6 +15,7 @@ import CartSidebar from "@/components/CartSidebar";
 import Toast from "@/components/Toast";
 import ScrollToTop from "@/components/ScrollToTop";
 import CookieConsent from "@/components/CookieConsent";
+import NewsletterPopup from "@/components/NewsletterPopup";
 
 export default function Home() {
   return (
@@ -34,6 +35,7 @@ export default function Home() {
       <Toast />
       <ScrollToTop />
       <CookieConsent />
+      <NewsletterPopup />
     </main>
   );
 }
