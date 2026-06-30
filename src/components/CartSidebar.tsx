@@ -4,6 +4,7 @@ import { X, ShoppingBag, Trash2, Plus, Minus } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useEffect } from "react";
 import CouponInput from "./CouponInput";
+import ShippingBar from "./ShippingBar";
 
 export default function CartSidebar() {
   const { cart, isCartOpen, closeCart, removeFromCart, incrementQuantity, decrementQuantity, cartTotal } = useCart();
@@ -45,6 +46,7 @@ export default function CartSidebar() {
           </button>
         </div>
 
+        <ShippingBar />
         <div className="flex flex-col h-[calc(100%-180px)] overflow-y-auto p-6">
           {cart.length === 0 ? (
             <div className="flex-1 flex flex-col items-center justify-center text-center">
