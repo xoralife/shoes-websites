@@ -24,6 +24,8 @@ interface CartContextType {
   toastMessage: string;
   addToCart: (product: Product) => void;
   removeFromCart: (id: number) => void;
+  incrementQuantity: (id: number) => void;
+  decrementQuantity: (id: number) => void;
   toggleWishlist: (id: number) => void;
   openCart: () => void;
   closeCart: () => void;
@@ -79,6 +81,24 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCart((prev) => prev.filter((item) => item.id !== id));
   }, []);
 
+  const incrementQuantity = useCallback((id: number) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  }, []);
+
+  const decrementQuantity = useCallback((id: number) => {
+    setCart((prev) =>
+      prev.map((item) =>
+        item.id === id && item.quantity > 1
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      ).filter((item) => item.quantity > 0)
+    );
+  }, []);
+
   const toggleWishlist = useCallback((id: number) => {
     setWishlist((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
@@ -102,6 +122,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         toastMessage,
         addToCart,
         removeFromCart,
+        incrementQuantity,
+        decrementQuantity,
         toggleWishlist,
         openCart,
         closeCart,
