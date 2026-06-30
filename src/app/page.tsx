@@ -2,6 +2,7 @@
 
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import BrandsStrip from "@/components/BrandsStrip";
 import FeatureStrip from "@/components/FeatureStrip";
 import Categories from "@/components/Categories";
 import FeaturedProducts from "@/components/FeaturedProducts";
@@ -11,12 +12,14 @@ import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import CartSidebar from "@/components/CartSidebar";
 import Toast from "@/components/Toast";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
     <main className="min-h-screen">
       <Header />
       <Hero />
+      <BrandsStrip />
       <FeatureStrip />
       <Categories />
       <FeaturedProducts />
@@ -26,6 +29,7 @@ export default function Home() {
       <Footer />
       <CartSidebar />
       <Toast />
+      <ScrollToTop />
     </main>
   );
 }
