@@ -1,18 +1,36 @@
 "use client";
 
 import { useState } from "react";
-import { Send } from "lucide-react";
+import { Send, CheckCircle } from "lucide-react";
 
 export default function Newsletter() {
   const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (email) {
-      alert("Thank you for subscribing!");
+      setSubmitted(true);
       setEmail("");
+      setTimeout(() => setSubmitted(false), 4000);
     }
   };
+
+  if (submitted) {
+    return (
+      <section className="py-20 bg-white">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-scale-in">
+          <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+            <CheckCircle size={32} className="text-green-600" />
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#16213E] mb-4">You&apos;re In!</h2>
+          <p className="text-[#6C757D] max-w-md mx-auto">
+            Thank you for subscribing! Check your inbox for exclusive offers.
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-20 bg-white">
