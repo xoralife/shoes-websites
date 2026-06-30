@@ -95,7 +95,14 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className="flex items-center gap-2">
           <span className="text-xl font-bold text-[#16213E]">${product.price.toFixed(2)}</span>
-          <span className="text-sm text-[#6C757D] line-through">${product.originalPrice.toFixed(2)}</span>
+          {product.originalPrice > product.price && (
+            <span className="text-sm text-[#6C757D] line-through">${product.originalPrice.toFixed(2)}</span>
+          )}
+        </div>
+
+        <div className="flex items-center gap-2 text-xs text-green-600">
+          <span className="w-2 h-2 rounded-full bg-green-500 inline-block animate-pulse-slow" />
+          In Stock
         </div>
 
         <button
