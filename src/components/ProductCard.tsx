@@ -16,14 +16,23 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   const renderStars = (rating: number) => {
     const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalf = rating - fullStars >= 0.3;
     for (let i = 1; i <= 5; i++) {
-      stars.push(
-        <Star
-          key={i}
-          size={14}
-          className={i <= Math.floor(rating) ? "fill-[#FEEFC0] text-[#FEEFC0]" : "text-gray-300"}
-        />
-      );
+      if (i <= fullStars) {
+        stars.push(<Star key={i} size={14} className="fill-[#FEEFC0] text-[#FEEFC0]" />);
+      } else if (i === fullStars + 1 && hasHalf) {
+        stars.push(
+          <span key={i} className="relative">
+            <Star size={14} className="text-gray-300" />
+            <span className="absolute inset-0 overflow-hidden w-[50%]">
+              <Star size={14} className="fill-[#FEEFC0] text-[#FEEFC0]" />
+            </span>
+          </span>
+        );
+      } else {
+        stars.push(<Star key={i} size={14} className="text-gray-300" />);
+      }
     }
     return stars;
   };
