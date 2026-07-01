@@ -63,10 +63,10 @@ function SearchContent() {
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 flex-wrap">
               {categories.map((cat) => (
-                <button key={cat} onClick={() => setCatFilter(cat)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${catFilter === cat ? "bg-[#E94560] text-white" : "bg-gray-100 dark:bg-[#2D2D4A] text-[#6C757D]"}`}>{cat}</button>
+                <button key={cat} onClick={() => setCatFilter(cat)} className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${catFilter === cat ? "bg-[#E94560] text-white" : "bg-gray-100 dark:bg-[#2D2D4A] text-[#6C757D] dark:text-gray-400"}`}>{cat}</button>
               ))}
             </div>
-            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="px-4 py-2 rounded-xl border border-gray-200 dark:border-[#2D2D4A] bg-white dark:bg-[#1A1A2E] text-sm text-[#6C757D] focus:outline-none">
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="px-4 py-2 rounded-xl border border-gray-200 dark:border-[#2D2D4A] bg-white dark:bg-[#1A1A2E] text-sm text-[#6C757D] dark:text-gray-400 focus:outline-none">
               <option value="featured">Sort: Featured</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>

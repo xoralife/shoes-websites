@@ -59,9 +59,9 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="group bg-white rounded-2xl card-shadow overflow-hidden card-hover cursor-pointer" onClick={() => router.push(`/product/${product.id}`)}>
+    <div className="group bg-white dark:bg-[#1A1A2E] rounded-2xl card-shadow overflow-hidden card-hover cursor-pointer" onClick={() => router.push(`/product/${product.id}`)}>
       <div className="relative image-zoom">
-        <div className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-8">
+        <div className="aspect-square bg-gradient-to-br from-gray-50 dark:from-[#2D2D4A] to-gray-100 dark:to-[#1A1A2E] flex items-center justify-center p-8">
           <svg viewBox="0 0 200 200" className="w-full h-full" fill="none">
             <path
               d="M60 140 Q50 125 55 105 Q60 85 80 80 L120 75 Q140 72 145 85 Q150 98 140 110 L130 125 Q120 140 110 145 Q90 155 75 150 Q60 145 60 140Z"
@@ -135,18 +135,18 @@ export default function ProductCard({ product }: ProductCardProps) {
       )}
 
       <div className="p-5 space-y-3">
-        <h3 className="font-semibold text-[#16213E] text-lg">{product.name}</h3>
+        <h3 className="font-semibold text-[#16213E] dark:text-[#F8F9FA] text-lg">{product.name}</h3>
 
         <div className="flex items-center gap-1">
           {renderStars(product.rating)}
-          <span className="text-xs text-[#6C757D] ml-1">{product.rating}</span>
-          <span className="text-xs text-[#6C757D] ml-1">({reviewCounts[product.id] || Math.floor(Math.random() * 200) + 20} reviews)</span>
+          <span className="text-xs text-[#6C757D] dark:text-gray-400 ml-1">{product.rating}</span>
+          <span className="text-xs text-[#6C757D] dark:text-gray-400 ml-1">({reviewCounts[product.id] || Math.floor(Math.random() * 200) + 20} reviews)</span>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-xl font-bold text-[#16213E]">${product.price.toFixed(2)}</span>
+          <span className="text-xl font-bold text-[#16213E] dark:text-[#F8F9FA]">${product.price.toFixed(2)}</span>
           {product.originalPrice > product.price && (
-            <span className="text-sm text-[#6C757D] line-through">${product.originalPrice.toFixed(2)}</span>
+            <span className="text-sm text-[#6C757D] dark:text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>
           )}
         </div>
 

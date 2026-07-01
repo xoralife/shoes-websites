@@ -64,7 +64,7 @@ export default function ShareModal({ productName, productUrl, open, onClose }: S
               </button>
             ))}
           </div>
-          <div className="flex items-center gap-2 p-3 rounded-xl bg-gray-100 dark:bg-[#0F0F1A] text-xs text-[#6C757D] truncate">
+          <div className="flex items-center gap-2 p-3 rounded-xl bg-gray-100 dark:bg-[#0F0F1A] text-xs text-[#6C757D] dark:text-gray-400 truncate">
             <Link size={14} className="shrink-0" />
             <span className="truncate">{fullUrl}</span>
           </div>
