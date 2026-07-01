@@ -31,10 +31,10 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
           <div className="px-6 pb-6 grid md:grid-cols-2 gap-6">
             <div className="aspect-square rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-8">
               <svg viewBox="0 0 200 200" className="w-full h-full" fill="none">
-                <path d="M60 140 Q50 125 55 105 Q60 85 80 80 L120 75 Q140 72 145 85 Q150 98 140 110 L130 125 Q120 140 110 145 Q90 155 75 150 Q60 145 60 140Z" fill="url(#quickGrad)" />
-                <path d="M80 80 L90 65 Q95 58 105 60 L120 62 Q128 65 125 72 L120 78" fill="url(#quickGrad)" />
+                <path d="M60 140 Q50 125 55 105 Q60 85 80 80 L120 75 Q140 72 145 85 Q150 98 140 110 L130 125 Q120 140 110 145 Q90 155 75 150 Q60 145 60 140Z" fill="url(#qg-${product.id})" />
+                <path d="M80 80 L90 65 Q95 58 105 60 L120 62 Q128 65 125 72 L120 78" fill="url(#qg-${product.id})" />
                 <defs>
-                  <linearGradient id="quickGrad" x1="50" y1="60" x2="150" y2="150">
+                  <linearGradient id={`qg-${product.id}`} x1="50" y1="60" x2="150" y2="150">
                     <stop offset="0%" stopColor="#E94560" />
                     <stop offset="100%" stopColor="#FF6B6B" />
                   </linearGradient>
@@ -52,7 +52,9 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
               </div>
               <div className="flex items-center gap-3">
                 <span className="text-2xl font-bold text-[#16213E]">${product.price.toFixed(2)}</span>
+                {product.originalPrice > product.price && (
                 <span className="text-lg text-[#6C757D] line-through">${product.originalPrice.toFixed(2)}</span>
+                )}
               </div>
               <p className="text-sm text-[#6C757D] leading-relaxed">
                 Premium quality sneakers designed for ultimate comfort and style. Features cushioned sole, breathable mesh, and durable outsole.

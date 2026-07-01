@@ -11,7 +11,9 @@ interface TimeLeft {
 
 export function useCountdown(targetDate: string) {
   const calculateTimeLeft = useCallback((): TimeLeft => {
-    const difference = new Date(targetDate).getTime() - new Date().getTime();
+    const target = new Date(targetDate).getTime();
+    if (isNaN(target)) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
+    const difference = target - Date.now();
     if (difference <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 };
     return {
       days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -21,9 +23,10 @@ export function useCountdown(targetDate: string) {
     };
   }, [targetDate]);
 
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
+    setTimeLeft(calculateTimeLeft());
     const timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 1000);
     return () => clearInterval(timer);
   }, [calculateTimeLeft]);

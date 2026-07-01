@@ -1,21 +1,22 @@
 "use client";
 
 import { SlidersHorizontal } from "lucide-react";
-import { useState } from "react";
+
+interface ProductFiltersProps {
+  active: string;
+  onFilterChange: (filter: string) => void;
+}
 
 const categories = ["All", "Running", "Training", "Lifestyle", "Sports", "Hiking", "Casual"];
-const priceRanges = ["Under $50", "$50 - $100", "$100 - $150", "Over $150"];
 
-export default function ProductFilters() {
-  const [active, setActive] = useState("All");
-
+export default function ProductFilters({ active, onFilterChange }: ProductFiltersProps) {
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
       <div className="flex items-center gap-2 flex-wrap">
         {categories.map((cat) => (
           <button
             key={cat}
-            onClick={() => setActive(cat)}
+            onClick={() => onFilterChange(cat)}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
               active === cat
                 ? "bg-[#E94560] text-white"

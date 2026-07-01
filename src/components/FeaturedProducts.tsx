@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import ProductCard from "./ProductCard";
 import ProductFilters from "./ProductFilters";
 import type { Product } from "@/context/CartContext";
@@ -16,6 +17,11 @@ const products: Product[] = [
 ];
 
 export default function FeaturedProducts() {
+  const [activeFilter, setActiveFilter] = useState("All");
+  const filtered = activeFilter === "All"
+    ? products
+    : products.filter((p) => p.category === activeFilter);
+
   return (
     <section id="featured" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,9 +33,9 @@ export default function FeaturedProducts() {
           </p>
         </div>
 
-        <ProductFilters />
+        <ProductFilters active={activeFilter} onFilterChange={setActiveFilter} />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {products.map((product, i) => (
+          {filtered.map((product, i) => (
             <div key={product.id} className={`animate-slide-up stagger-${i + 1}`}>
               <ProductCard product={product} />
             </div>

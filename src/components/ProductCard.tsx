@@ -2,17 +2,32 @@
 
 import { Heart, Star, ShoppingBag, Eye, Share2 } from "lucide-react";
 import { useCart, type Product } from "@/context/CartContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import QuickViewModal from "./QuickViewModal";
 
 interface ProductCardProps {
   product: Product;
 }
 
+const reviewCounts: Record<number, number> = {};
+
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart, toggleWishlist, wishlist } = useCart();
   const [showQuickView, setShowQuickView] = useState(false);
   const isWishlisted = wishlist.includes(product.id);
+
+  useEffect(() => {
+    if (!reviewCounts[product.id]) {
+      reviewCounts[product.id] = Math.floor(Math.random() * 200) + 20;
+    }
+    try {
+      const saved = localStorage.getItem("solemate-recently-viewed");
+      const recent: Product[] = saved ? JSON.parse(saved) : [];
+      const filtered = recent.filter((p) => p.id !== product.id);
+      filtered.unshift(product);
+      localStorage.setItem("solemate-recently-viewed", JSON.stringify(filtered.slice(0, 8)));
+    } catch {}
+  }, [product.id, product]);
 
   const renderStars = (rating: number) => {
     const stars = [];
@@ -44,14 +59,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           <svg viewBox="0 0 200 200" className="w-full h-full" fill="none">
             <path
               d="M60 140 Q50 125 55 105 Q60 85 80 80 L120 75 Q140 72 145 85 Q150 98 140 110 L130 125 Q120 140 110 145 Q90 155 75 150 Q60 145 60 140Z"
-              fill="url(#productGrad)" stroke="#D1D5DB" strokeWidth="1"
+              fill={`url(#pg-${product.id})`} stroke="#D1D5DB" strokeWidth="1"
             />
             <path
               d="M80 80 L90 65 Q95 58 105 60 L120 62 Q128 65 125 72 L120 78"
-              fill="url(#productGrad)" stroke="#D1D5DB" strokeWidth="1"
+              fill={`url(#pg-${product.id})`} stroke="#D1D5DB" strokeWidth="1"
             />
             <defs>
-              <linearGradient id="productGrad" x1="50" y1="60" x2="150" y2="150">
+              <linearGradient id={`pg-${product.id}`} x1="50" y1="60" x2="150" y2="150">
                 <stop offset="0%" stopColor="#E94560" />
                 <stop offset="100%" stopColor="#FF6B6B" />
               </linearGradient>
@@ -108,7 +123,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="flex items-center gap-1">
           {renderStars(product.rating)}
           <span className="text-xs text-[#6C757D] ml-1">{product.rating}</span>
-          <span className="text-xs text-[#6C757D] ml-1">({Math.floor(Math.random() * 200) + 20} reviews)</span>
+          <span className="text-xs text-[#6C757D] ml-1">({reviewCounts[product.id] || Math.floor(Math.random() * 200) + 20} reviews)</span>
         </div>
 
         <div className="flex items-center gap-2">

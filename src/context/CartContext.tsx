@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, useCallback, useMemo, useRef, type ReactNode } from "react";
 
 export interface Product {
   id: number;
@@ -58,10 +58,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("solemate-wishlist", JSON.stringify(wishlist));
   }, [wishlist]);
 
+  const toastTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
   const showToast = useCallback((message: string) => {
     setToastMessage(message);
     setIsToastVisible(true);
-    setTimeout(() => setIsToastVisible(false), 2500);
+    if (toastTimer.current) clearTimeout(toastTimer.current);
+    toastTimer.current = setTimeout(() => setIsToastVisible(false), 2500);
   }, []);
 
   const addToCart = useCallback((product: Product) => {
@@ -107,10 +110,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const openCart = useCallback(() => setIsCartOpen(true), []);
   const closeCart = useCallback(() => setIsCartOpen(false), []);
+  useEffect(() => () => { if (toastTimer.current) clearTimeout(toastTimer.current); }, []);
+
   const dismissToast = useCallback(() => setIsToastVisible(false), []);
 
-  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-  const cartTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const cartCount = useMemo(() => cart.reduce((sum, item) => sum + item.quantity, 0), [cart]);
+  const cartTotal = useMemo(() => cart.reduce((sum, item) => sum + item.price * item.quantity, 0), [cart]);
 
   return (
     <CartContext.Provider

@@ -62,10 +62,10 @@ export default function CartSidebar() {
                     <svg viewBox="0 0 40 40" className="w-8 h-8" fill="none">
                       <path
                         d="M12 28 Q10 25 11 21 Q12 17 16 16 L24 15 Q28 14 29 17 Q30 20 28 22 L26 25 Q24 28 22 29 Q18 31 15 30 Q12 29 12 28Z"
-                        fill="url(#cartGrad)"
+                        fill={`url(#cg-${item.id})`}
                       />
                       <defs>
-                        <linearGradient id="cartGrad">
+                        <linearGradient id={`cg-${item.id}`}>
                           <stop offset="0%" stopColor="#E94560" />
                           <stop offset="100%" stopColor="#FF6B6B" />
                         </linearGradient>
@@ -115,7 +115,7 @@ export default function CartSidebar() {
               <span className="font-semibold text-[#16213E]">Total</span>
               <span className="text-xl font-bold text-[#16213E]">${cartTotal.toFixed(2)}</span>
             </div>
-            <button className="w-full py-3.5 rounded-xl bg-[#1A1A2E] text-white font-medium text-sm hover:bg-[#0F3460] transition-all duration-300">
+            <button onClick={closeCart} className="w-full py-3.5 rounded-xl bg-[#1A1A2E] text-white font-medium text-sm hover:bg-[#0F3460] transition-all duration-300">
             Proceed to Checkout
           </button>
           </div>
