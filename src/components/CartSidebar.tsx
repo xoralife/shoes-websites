@@ -116,8 +116,8 @@ export default function CartSidebar() {
               <span className="text-xl font-bold text-[#16213E]">${cartTotal.toFixed(2)}</span>
             </div>
             <button className="w-full py-3.5 rounded-xl bg-[#1A1A2E] text-white font-medium text-sm hover:bg-[#0F3460] transition-all duration-300">
-              Checkout
-            </button>
+            Proceed to Checkout
+          </button>
           </div>
         )}
       </div>
