@@ -25,10 +25,10 @@ export default function ImageGallery() {
           </defs>
         </svg>
       </div>
-      <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all">
+      <button onClick={prev} className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 dark:bg-[#1A1A2E]/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-[#1A1A2E] transition-all">
         <ChevronLeft size={20} />
       </button>
-      <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all">
+      <button onClick={next} className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/80 dark:bg-[#1A1A2E]/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-[#1A1A2E] transition-all">
         <ChevronRight size={20} />
       </button>
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">

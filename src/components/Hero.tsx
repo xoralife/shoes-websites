@@ -10,7 +10,7 @@ export default function Hero() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
 
           <div className="space-y-6 animate-fade-in-up">
-            {/* <span className="inline-block px-4 py-2 bg-[#E94560]/10 border border-[#E94560]/30 rounded-full text-[#E94560] text-sm font-semibold tracking-wider badge-pulse">
+            {/* <span className="inline-block px-4 py-2 bg-[#E94560]/10 border border-[#E94560]/30 rounded-full text-[#E94560] dark:text-[#FF6B6B] text-sm font-semibold tracking-wider badge-pulse">
               NEW COLLECTION 2026
             </span> */}
 
@@ -22,7 +22,7 @@ export default function Hero() {
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-300 max-w-md">
+            <p className="text-lg md:text-xl text-gray-300 dark:text-gray-600 max-w-md">
               Premium sneakers crafted for comfort &amp; style. Redefine your stride with every step.
             </p>
 
@@ -39,7 +39,7 @@ export default function Hero() {
 
               <a
                 href="#categories"
-                className="inline-flex items-center px-8 py-3.5 rounded-full border-2 border-white text-white font-semibold text-sm hover:bg-white hover:text-[#1A1A2E] transition-all duration-300"
+                className="inline-flex items-center px-8 py-3.5 rounded-full border-2 border-white dark:border-[#1A1A2E] text-white font-semibold text-sm hover:bg-white dark:hover:bg-[#1A1A2E] hover:text-[#1A1A2E] transition-all duration-300"
               >
                 Explore
               </a>
@@ -72,12 +72,12 @@ export default function Hero() {
 
             <div className="absolute top-10 right-0 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-3 floating">
               <p className="text-white font-bold text-lg">50% OFF</p>
-              <p className="text-gray-300 text-xs">Limited Time</p>
+              <p className="text-gray-300 dark:text-gray-600 text-xs">Limited Time</p>
             </div>
 
             <div className="absolute bottom-20 left-0 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-5 py-3 floating-delay">
               <p className="text-white font-bold text-sm">Free Shipping</p>
-              <p className="text-gray-300 text-xs">On all orders</p>
+              <p className="text-gray-300 dark:text-gray-600 text-xs">On all orders</p>
             </div>
           </div>
         </div>

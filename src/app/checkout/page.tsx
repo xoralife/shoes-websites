@@ -31,7 +31,7 @@ export default function CheckoutPage() {
         <div className="pt-32 pb-20 text-center">
           <ShoppingBag size={64} className="mx-auto text-gray-300 dark:text-gray-600 mb-4" />
           <h1 className="text-2xl font-bold text-[#16213E] dark:text-[#F8F9FA] mb-2">Your Cart is Empty</h1>
-          <p className="text-[#6C757D] dark:text-gray-400 mb-6">Add some products before checking out.</p>
+          <p className="text-[#6C757D] dark:text-gray-400 dark:text-gray-500 mb-6">Add some products before checking out.</p>
           <button onClick={() => router.push("/")} className="px-8 py-3 rounded-xl bg-[#E94560] text-white font-medium hover:bg-[#d63851] transition-all">
             Continue Shopping
           </button>
@@ -77,7 +77,7 @@ export default function CheckoutPage() {
       <Header />
       <main className="pt-24 pb-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <button onClick={() => router.back()} className="flex items-center gap-2 text-[#6C757D] dark:text-gray-400 hover:text-[#E94560] transition-colors mb-6">
+          <button onClick={() => router.back()} className="flex items-center gap-2 text-[#6C757D] dark:text-gray-400 dark:text-gray-500 hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors mb-6">
             <ArrowLeft size={18} />
             <span className="text-sm font-medium">Back</span>
           </button>
@@ -96,31 +96,31 @@ export default function CheckoutPage() {
                 )}
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="sm:col-span-2">
-                    <input placeholder="Full Name" value={form.name} onChange={(e) => { setForm({ ...form, name: e.target.value }); setFormErrors({ ...formErrors, name: "" }); }} className={`sm:col-span-2 w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.name ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    <input placeholder="Full Name" value={form.name} onChange={(e) => { setForm({ ...form, name: e.target.value }); setFormErrors({ ...formErrors, name: "" }); }} className={`sm:col-span-2 w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.name ? "border-red-400 bg-red-50" : "border-gray-200 dark:border-[#2D2D4A]"}`} />
                     {formErrors.name && <p className="text-xs text-red-500 mt-1">{formErrors.name}</p>}
                   </div>
                   <div>
-                    <input placeholder="Email" type="email" value={form.email} onChange={(e) => { setForm({ ...form, email: e.target.value }); setFormErrors({ ...formErrors, email: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.email ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    <input placeholder="Email" type="email" value={form.email} onChange={(e) => { setForm({ ...form, email: e.target.value }); setFormErrors({ ...formErrors, email: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.email ? "border-red-400 bg-red-50" : "border-gray-200 dark:border-[#2D2D4A]"}`} />
                     {formErrors.email && <p className="text-xs text-red-500 mt-1">{formErrors.email}</p>}
                   </div>
                   <div>
-                    <input placeholder="Phone" type="tel" value={form.phone} onChange={(e) => { setForm({ ...form, phone: e.target.value }); setFormErrors({ ...formErrors, phone: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.phone ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    <input placeholder="Phone" type="tel" value={form.phone} onChange={(e) => { setForm({ ...form, phone: e.target.value }); setFormErrors({ ...formErrors, phone: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.phone ? "border-red-400 bg-red-50" : "border-gray-200 dark:border-[#2D2D4A]"}`} />
                     {formErrors.phone && <p className="text-xs text-red-500 mt-1">{formErrors.phone}</p>}
                   </div>
                   <div className="sm:col-span-2">
-                    <input placeholder="Street Address" value={form.address} onChange={(e) => { setForm({ ...form, address: e.target.value }); setFormErrors({ ...formErrors, address: "" }); }} className={`sm:col-span-2 w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.address ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    <input placeholder="Street Address" value={form.address} onChange={(e) => { setForm({ ...form, address: e.target.value }); setFormErrors({ ...formErrors, address: "" }); }} className={`sm:col-span-2 w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.address ? "border-red-400 bg-red-50" : "border-gray-200 dark:border-[#2D2D4A]"}`} />
                     {formErrors.address && <p className="text-xs text-red-500 mt-1">{formErrors.address}</p>}
                   </div>
                   <div>
-                    <input placeholder="City" value={form.city} onChange={(e) => { setForm({ ...form, city: e.target.value }); setFormErrors({ ...formErrors, city: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.city ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    <input placeholder="City" value={form.city} onChange={(e) => { setForm({ ...form, city: e.target.value }); setFormErrors({ ...formErrors, city: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.city ? "border-red-400 bg-red-50" : "border-gray-200 dark:border-[#2D2D4A]"}`} />
                     {formErrors.city && <p className="text-xs text-red-500 mt-1">{formErrors.city}</p>}
                   </div>
                   <div>
-                    <input placeholder="State" value={form.state} onChange={(e) => { setForm({ ...form, state: e.target.value }); setFormErrors({ ...formErrors, state: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.state ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    <input placeholder="State" value={form.state} onChange={(e) => { setForm({ ...form, state: e.target.value }); setFormErrors({ ...formErrors, state: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.state ? "border-red-400 bg-red-50" : "border-gray-200 dark:border-[#2D2D4A]"}`} />
                     {formErrors.state && <p className="text-xs text-red-500 mt-1">{formErrors.state}</p>}
                   </div>
                   <div>
-                    <input placeholder="ZIP Code" value={form.zip} onChange={(e) => { setForm({ ...form, zip: e.target.value }); setFormErrors({ ...formErrors, zip: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.zip ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    <input placeholder="ZIP Code" value={form.zip} onChange={(e) => { setForm({ ...form, zip: e.target.value }); setFormErrors({ ...formErrors, zip: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.zip ? "border-red-400 bg-red-50" : "border-gray-200 dark:border-[#2D2D4A]"}`} />
                     {formErrors.zip && <p className="text-xs text-red-500 mt-1">{formErrors.zip}</p>}
                   </div>
                 </div>
@@ -130,18 +130,18 @@ export default function CheckoutPage() {
                 <h2 className="text-lg font-bold text-[#16213E] dark:text-[#F8F9FA] mb-5">Payment Method</h2>
                 <div className="space-y-3">
                   {paymentMethods.map(({ id, name, icon: Icon }) => (
-                    <label key={id} className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${paymentMethod === id ? "border-[#E94560] bg-[#E94560]/5" : "border-gray-100 dark:border-[#2D2D4A] hover:border-gray-200"}`}>
+                    <label key={id} className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${paymentMethod === id ? "border-[#E94560] bg-[#E94560]/5" : "border-gray-100 dark:border-[#2D2D4A] hover:border-gray-200 dark:border-[#2D2D4A]"}`}>
                       <input type="radio" name="payment" value={id} checked={paymentMethod === id} onChange={() => setPaymentMethod(id)} className="accent-[#E94560]" />
-                      <Icon size={20} className="text-[#E94560]" />
+                      <Icon size={20} className="text-[#E94560] dark:text-[#FF6B6B]" />
                       <span className="font-medium text-[#16213E] dark:text-[#F8F9FA] text-sm">{name}</span>
                     </label>
                   ))}
                 </div>
                 {paymentMethod === "card" && (
                   <div className="mt-4 grid sm:grid-cols-2 gap-4">
-                    <input placeholder="Card Number (4242 4242 4242 4242)" className="sm:col-span-2 px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
-                    <input placeholder="MM/YY" className="px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
-                    <input placeholder="CVC" className="px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
+                    <input placeholder="Card Number (4242 4242 4242 4242)" className="sm:col-span-2 px-4 py-3 rounded-xl border border-gray-200 dark:border-[#2D2D4A] text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
+                    <input placeholder="MM/YY" className="px-4 py-3 rounded-xl border border-gray-200 dark:border-[#2D2D4A] text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
+                    <input placeholder="CVC" className="px-4 py-3 rounded-xl border border-gray-200 dark:border-[#2D2D4A] text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
                   </div>
                 )}
               </div>
@@ -160,20 +160,20 @@ export default function CheckoutPage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-xs font-medium text-[#16213E] dark:text-[#F8F9FA] truncate">{item.name}</p>
-                        <p className="text-xs text-[#6C757D] dark:text-gray-400">${item.price.toFixed(2)} x {item.quantity}</p>
+                        <p className="text-xs text-[#6C757D] dark:text-gray-400 dark:text-gray-500">${item.price.toFixed(2)} x {item.quantity}</p>
                       </div>
                       <div className="flex items-center gap-1">
                         <button onClick={() => decrementQuantity(item.id)} className="w-6 h-6 rounded-full bg-gray-200 dark:bg-[#2D2D4A] flex items-center justify-center hover:bg-gray-300"><Minus size={10} /></button>
                         <span className="text-xs font-medium w-4 text-center text-[#16213E] dark:text-[#F8F9FA]">{item.quantity}</span>
                         <button onClick={() => incrementQuantity(item.id)} className="w-6 h-6 rounded-full bg-gray-200 dark:bg-[#2D2D4A] flex items-center justify-center hover:bg-gray-300"><Plus size={10} /></button>
                       </div>
-                      <button onClick={() => removeFromCart(item.id)} className="text-[#6C757D] dark:text-gray-400 hover:text-[#E94560] p-1"><Trash2 size={14} /></button>
+                      <button onClick={() => removeFromCart(item.id)} className="text-[#6C757D] dark:text-gray-400 dark:text-gray-500 hover:text-[#E94560] dark:text-[#FF6B6B] p-1"><Trash2 size={14} /></button>
                     </div>
                   ))}
                 </div>
                 <div className="space-y-2 text-sm border-t border-gray-100 dark:border-[#2D2D4A] pt-4">
-                  <div className="flex justify-between text-[#6C757D] dark:text-gray-400"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
-                  <div className="flex justify-between text-[#6C757D] dark:text-gray-400"><span>Shipping</span><span>{shipping === 0 ? <span className="text-green-600 font-medium">FREE</span> : `$${shipping.toFixed(2)}`}</span></div>
+                  <div className="flex justify-between text-[#6C757D] dark:text-gray-400 dark:text-gray-500"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
+                  <div className="flex justify-between text-[#6C757D] dark:text-gray-400 dark:text-gray-500"><span>Shipping</span><span>{shipping === 0 ? <span className="text-green-600 dark:text-green-400 font-medium">FREE</span> : `$${shipping.toFixed(2)}`}</span></div>
                   <div className="flex justify-between text-lg font-bold text-[#16213E] dark:text-[#F8F9FA] pt-2 border-t border-gray-100 dark:border-[#2D2D4A]"><span>Total</span><span>${total.toFixed(2)}</span></div>
                 </div>
                 <button
@@ -183,7 +183,7 @@ export default function CheckoutPage() {
                 >
                   {placing ? <><Loader2 size={18} className="animate-spin" /> Placing Order...</> : `Place Order - $${total.toFixed(2)}`}
                 </button>
-                <p className="text-xs text-[#6C757D] dark:text-gray-400 text-center mt-3 flex items-center justify-center gap-1"><Shield size={12} /> Secure SSL Encrypted Checkout</p>
+                <p className="text-xs text-[#6C757D] dark:text-gray-400 dark:text-gray-500 text-center mt-3 flex items-center justify-center gap-1"><Shield size={12} /> Secure SSL Encrypted Checkout</p>
               </div>
             </div>
           </div>

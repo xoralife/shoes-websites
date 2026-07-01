@@ -31,8 +31,8 @@ export default function Modal({ open, onClose, children, title }: ModalProps) {
         <div className="bg-white rounded-3xl max-w-lg w-full max-h-[85vh] overflow-y-auto animate-scale-in shadow-2xl" onClick={(e) => e.stopPropagation()}>
           {title && (
             <div className="flex items-center justify-between px-6 pt-6 pb-2">
-              <h2 className="text-lg font-bold text-[#16213E]">{title}</h2>
-              <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors" aria-label="Close">
+              <h2 className="text-lg font-bold text-[#16213E] dark:text-[#F8F9FA]">{title}</h2>
+              <button onClick={onClose} className="p-2 hover:bg-gray-100 dark:bg-[#2D2D4A] rounded-full transition-colors" aria-label="Close">
                 <X size={18} />
               </button>
             </div>

@@ -9,7 +9,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleDarkMode}
-      className="p-2 text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] transition-colors"
+      className="p-2 text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors"
       aria-label="Toggle dark mode"
     >
       {darkMode ? <Sun size={20} /> : <Moon size={20} />}

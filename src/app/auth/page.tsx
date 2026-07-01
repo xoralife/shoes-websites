@@ -41,30 +41,30 @@ export default function AuthPage() {
       <Header />
       <main className="pt-24 pb-16">
         <div className="max-w-md mx-auto px-4">
-          <button onClick={() => router.back()} className="flex items-center gap-2 text-[#6C757D] dark:text-gray-400 hover:text-[#E94560] transition-colors mb-6">
+          <button onClick={() => router.back()} className="flex items-center gap-2 text-[#6C757D] dark:text-gray-400 dark:text-gray-500 hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors mb-6">
             <ArrowLeft size={18} />
             <span className="text-sm font-medium">Back</span>
           </button>
 
           <div className="bg-white dark:bg-[#1A1A2E] rounded-3xl p-8 card-shadow">
             <div className="flex mb-8 bg-gray-100 dark:bg-[#2D2D4A] rounded-xl p-1">
-              <button onClick={() => setTab("login")} className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${tab === "login" ? "bg-white dark:bg-[#1A1A2E] shadow-sm text-[#16213E] dark:text-[#F8F9FA]" : "text-[#6C757D] dark:text-gray-400"}`}>Sign In</button>
-              <button onClick={() => setTab("signup")} className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${tab === "signup" ? "bg-white dark:bg-[#1A1A2E] shadow-sm text-[#16213E] dark:text-[#F8F9FA]" : "text-[#6C757D] dark:text-gray-400"}`}>Sign Up</button>
+              <button onClick={() => setTab("login")} className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${tab === "login" ? "bg-white dark:bg-[#1A1A2E] shadow-sm text-[#16213E] dark:text-[#F8F9FA]" : "text-[#6C757D] dark:text-gray-400 dark:text-gray-500"}`}>Sign In</button>
+              <button onClick={() => setTab("signup")} className={`flex-1 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 ${tab === "signup" ? "bg-white dark:bg-[#1A1A2E] shadow-sm text-[#16213E] dark:text-[#F8F9FA]" : "text-[#6C757D] dark:text-gray-400 dark:text-gray-500"}`}>Sign Up</button>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {tab === "signup" && (
                 <div className="relative">
-                  <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6C757D] dark:text-gray-400" />
+                  <User size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6C757D] dark:text-gray-400 dark:text-gray-500" />
                   <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name" className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-[#2D2D4A] bg-white dark:bg-[#1A1A2E] text-[#16213E] dark:text-[#F8F9FA] text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
                 </div>
               )}
               <div className="relative">
-                <Mail size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6C757D] dark:text-gray-400" />
+                <Mail size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6C757D] dark:text-gray-400 dark:text-gray-500" />
                 <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" required className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-[#2D2D4A] bg-white dark:bg-[#1A1A2E] text-[#16213E] dark:text-[#F8F9FA] text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
               </div>
               <div className="relative">
-                <Lock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6C757D] dark:text-gray-400" />
+                <Lock size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#6C757D] dark:text-gray-400 dark:text-gray-500" />
                 <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" required className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 dark:border-[#2D2D4A] bg-white dark:bg-[#1A1A2E] text-[#16213E] dark:text-[#F8F9FA] text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
               </div>
 

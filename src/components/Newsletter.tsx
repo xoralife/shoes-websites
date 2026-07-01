@@ -21,10 +21,10 @@ export default function Newsletter() {
       <section className="py-20 bg-white">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-scale-in">
           <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
-            <CheckCircle size={32} className="text-green-600" />
+            <CheckCircle size={32} className="text-green-600 dark:text-green-400" />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#16213E] mb-4">You&apos;re In!</h2>
-          <p className="text-[#6C757D] max-w-md mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#16213E] dark:text-[#F8F9FA] mb-4">You&apos;re In!</h2>
+          <p className="text-[#6C757D] dark:text-gray-400 dark:text-gray-500 max-w-md mx-auto">
             Thank you for subscribing! Check your inbox for exclusive offers.
           </p>
         </div>
@@ -35,10 +35,10 @@ export default function Newsletter() {
   return (
     <section className="py-20 bg-white">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#16213E] mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#16213E] dark:text-[#F8F9FA] mb-4">
           Stay in the Loop
         </h2>
-        <p className="text-[#6C757D] mb-8 max-w-md mx-auto">
+        <p className="text-[#6C757D] dark:text-gray-400 dark:text-gray-500 mb-8 max-w-md mx-auto">
           Subscribe to get special offers, free giveaways, and exclusive deals.
         </p>
 
@@ -49,7 +49,7 @@ export default function Newsletter() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Enter your email"
             required
-            className="flex-1 px-5 py-3.5 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 focus:border-[#E94560] text-sm"
+            className="flex-1 px-5 py-3.5 rounded-xl border border-gray-200 dark:border-[#2D2D4A] focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 focus:border-[#E94560] text-sm"
           />
           <button
             type="submit"

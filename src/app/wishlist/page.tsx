@@ -20,22 +20,22 @@ export default function WishlistPage() {
       <Header />
       <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <button onClick={() => router.back()} className="flex items-center gap-2 text-[#6C757D] dark:text-gray-400 hover:text-[#E94560] transition-colors mb-6">
+          <button onClick={() => router.back()} className="flex items-center gap-2 text-[#6C757D] dark:text-gray-400 dark:text-gray-500 hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors mb-6">
             <ArrowLeft size={18} />
             <span className="text-sm font-medium">Back</span>
           </button>
 
           <div className="flex items-center gap-3 mb-10">
-            <Heart size={28} className="text-[#E94560]" />
+            <Heart size={28} className="text-[#E94560] dark:text-[#FF6B6B]" />
             <h1 className="text-2xl md:text-3xl font-bold text-[#16213E] dark:text-[#F8F9FA]">My Wishlist</h1>
-            <span className="text-[#6C757D] dark:text-gray-400 text-sm">({wishlistProducts.length} items)</span>
+            <span className="text-[#6C757D] dark:text-gray-400 dark:text-gray-500 text-sm">({wishlistProducts.length} items)</span>
           </div>
 
           {wishlistProducts.length === 0 ? (
             <div className="text-center py-20">
               <Heart size={64} className="mx-auto text-gray-300 dark:text-gray-600 mb-4" />
               <h2 className="text-xl font-bold text-[#16213E] dark:text-[#F8F9FA] mb-2">Your Wishlist is Empty</h2>
-              <p className="text-[#6C757D] dark:text-gray-400 mb-6">Save your favorite items here!</p>
+              <p className="text-[#6C757D] dark:text-gray-400 dark:text-gray-500 mb-6">Save your favorite items here!</p>
               <button onClick={() => router.push("/")} className="px-8 py-3 rounded-xl bg-[#E94560] text-white font-medium text-sm hover:bg-[#d63851] transition-all">
                 Explore Products
               </button>
@@ -61,7 +61,7 @@ export default function WishlistPage() {
                     <div className="flex items-center gap-2">
                       <span className="text-lg font-bold text-[#16213E] dark:text-[#F8F9FA]">${product.price.toFixed(2)}</span>
                       {product.originalPrice > product.price && (
-                        <span className="text-xs text-[#6C757D] dark:text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>
+                        <span className="text-xs text-[#6C757D] dark:text-gray-400 dark:text-gray-500 line-through">${product.originalPrice.toFixed(2)}</span>
                       )}
                     </div>
                     <div className="flex gap-2">
@@ -69,7 +69,7 @@ export default function WishlistPage() {
                         <ShoppingBag size={14} /> Add to Cart
                       </button>
                       <button onClick={() => toggleWishlist(product.id)} className="px-3 py-2.5 rounded-xl border border-gray-200 dark:border-[#2D2D4A] hover:border-[#E94560] transition-colors">
-                        <Heart size={16} className="fill-[#E94560] text-[#E94560]" />
+                        <Heart size={16} className="fill-[#E94560] text-[#E94560] dark:text-[#FF6B6B]" />
                       </button>
                     </div>
                   </div>

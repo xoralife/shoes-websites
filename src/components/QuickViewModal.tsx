@@ -24,7 +24,7 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
       <div className="fixed inset-0 z-[90] flex items-center justify-center p-4">
         <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-scale-in" onClick={(e) => e.stopPropagation()}>
           <div className="flex justify-end p-4">
-            <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+            <button onClick={onClose} className="p-2 hover:bg-gray-100 dark:bg-[#2D2D4A] rounded-full transition-colors">
               <X size={20} />
             </button>
           </div>
@@ -42,38 +42,38 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
               </svg>
             </div>
             <div className="space-y-4">
-              <span className="text-xs font-semibold text-[#E94560] uppercase tracking-wider">{product.category}</span>
-              <h2 className="text-2xl font-bold text-[#16213E]">{product.name}</h2>
+              <span className="text-xs font-semibold text-[#E94560] dark:text-[#FF6B6B] uppercase tracking-wider">{product.category}</span>
+              <h2 className="text-2xl font-bold text-[#16213E] dark:text-[#F8F9FA]">{product.name}</h2>
               <div className="flex items-center gap-1">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={16} className={i < Math.floor(product.rating) ? "fill-[#FEEFC0] text-[#FEEFC0]" : "text-gray-300"} />
+                  <Star key={i} size={16} className={i < Math.floor(product.rating) ? "fill-[#FEEFC0] text-[#FEEFC0]" : "text-gray-300 dark:text-gray-600"} />
                 ))}
-                <span className="text-sm text-[#6C757D] ml-2">{product.rating}</span>
+                <span className="text-sm text-[#6C757D] dark:text-gray-400 dark:text-gray-500 ml-2">{product.rating}</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-2xl font-bold text-[#16213E]">${product.price.toFixed(2)}</span>
+                <span className="text-2xl font-bold text-[#16213E] dark:text-[#F8F9FA]">${product.price.toFixed(2)}</span>
                 {product.originalPrice > product.price && (
-                <span className="text-lg text-[#6C757D] line-through">${product.originalPrice.toFixed(2)}</span>
+                <span className="text-lg text-[#6C757D] dark:text-gray-400 dark:text-gray-500 line-through">${product.originalPrice.toFixed(2)}</span>
                 )}
               </div>
-              <p className="text-sm text-[#6C757D] leading-relaxed">
+              <p className="text-sm text-[#6C757D] dark:text-gray-400 dark:text-gray-500 leading-relaxed">
                 Premium quality sneakers designed for ultimate comfort and style. Features cushioned sole, breathable mesh, and durable outsole.
               </p>
               <div>
-                <p className="text-sm font-semibold text-[#16213E] mb-2">Size</p>
+                <p className="text-sm font-semibold text-[#16213E] dark:text-[#F8F9FA] mb-2">Size</p>
                 <div className="flex flex-wrap gap-2">
                   {sizes.map((size) => (
-                    <button key={size} className="px-4 py-2 border border-gray-200 rounded-lg text-sm hover:border-[#E94560] hover:text-[#E94560] transition-colors">
+                    <button key={size} className="px-4 py-2 border border-gray-200 dark:border-[#2D2D4A] rounded-lg text-sm hover:border-[#E94560] hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors">
                       {size}
                     </button>
                   ))}
                 </div>
               </div>
               <div>
-                <p className="text-sm font-semibold text-[#16213E] mb-2">Color</p>
+                <p className="text-sm font-semibold text-[#16213E] dark:text-[#F8F9FA] mb-2">Color</p>
                 <div className="flex gap-2">
                   {colors.map((color) => (
-                    <button key={color} className="w-8 h-8 rounded-full border-2 border-gray-200 hover:border-[#E94560] transition-colors" style={{ backgroundColor: color }} />
+                    <button key={color} className="w-8 h-8 rounded-full border-2 border-gray-200 dark:border-[#2D2D4A] hover:border-[#E94560] transition-colors" style={{ backgroundColor: color }} />
                   ))}
                 </div>
               </div>
@@ -81,8 +81,8 @@ export default function QuickViewModal({ product, onClose }: QuickViewModalProps
                 <button onClick={() => { addToCart(product); onClose(); }} className="flex-1 flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#E94560] text-white font-medium text-sm hover:bg-[#d63851] transition-all duration-300">
                   <ShoppingBag size={16} /> Add to Cart
                 </button>
-                <button onClick={() => toggleWishlist(product.id)} className="px-4 py-3 rounded-xl border border-gray-200 hover:border-[#E94560] transition-colors">
-                  <Heart size={18} className={isWishlisted ? "fill-[#E94560] text-[#E94560]" : "text-[#6C757D]"} />
+                <button onClick={() => toggleWishlist(product.id)} className="px-4 py-3 rounded-xl border border-gray-200 dark:border-[#2D2D4A] hover:border-[#E94560] transition-colors">
+                  <Heart size={18} className={isWishlisted ? "fill-[#E94560] text-[#E94560] dark:text-[#FF6B6B]" : "text-[#6C757D] dark:text-gray-400 dark:text-gray-500"} />
                 </button>
               </div>
             </div>

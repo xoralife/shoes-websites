@@ -29,12 +29,12 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-20 bg-[#F8F9FA]">
+    <section className="py-20 bg-[#F8F9FA] dark:bg-[#0F0F1A]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <span className="text-[#E94560] font-semibold text-sm tracking-wider uppercase">Testimonials</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#16213E] mt-2">What Our Customers Say</h2>
-          <p className="text-[#6C757D] mt-3 max-w-md mx-auto">
+          <span className="text-[#E94560] dark:text-[#FF6B6B] font-semibold text-sm tracking-wider uppercase">Testimonials</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#16213E] dark:text-[#F8F9FA] mt-2">What Our Customers Say</h2>
+          <p className="text-[#6C757D] dark:text-gray-400 dark:text-gray-500 mt-3 max-w-md mx-auto">
             Real reviews from real customers
           </p>
         </div>
@@ -45,7 +45,7 @@ export default function Testimonials() {
               key={name}
               className="bg-white rounded-2xl p-8 card-shadow card-hover relative"
             >
-              <Quote size={32} className="text-[#E94560]/10 absolute top-6 right-6" />
+              <Quote size={32} className="text-[#E94560] dark:text-[#FF6B6B]/10 absolute top-6 right-6" />
 
               <div className="flex items-center gap-4 mb-5">
                 <div
@@ -54,8 +54,8 @@ export default function Testimonials() {
                   {initials}
                 </div>
                 <div>
-                  <h4 className="font-semibold text-[#16213E]">{name}</h4>
-                  <p className="text-sm text-[#6C757D]">{role}</p>
+                  <h4 className="font-semibold text-[#16213E] dark:text-[#F8F9FA]">{name}</h4>
+                  <p className="text-sm text-[#6C757D] dark:text-gray-400 dark:text-gray-500">{role}</p>
                 </div>
               </div>
 
@@ -64,12 +64,12 @@ export default function Testimonials() {
                   <Star
                     key={i}
                     size={16}
-                    className={i < rating ? "fill-[#FEEFC0] text-[#FEEFC0]" : "text-gray-300"}
+                    className={i < rating ? "fill-[#FEEFC0] text-[#FEEFC0]" : "text-gray-300 dark:text-gray-600"}
                   />
                 ))}
               </div>
 
-              <p className="text-[#6C757D] leading-relaxed">&ldquo;{text}&rdquo;</p>
+              <p className="text-[#6C757D] dark:text-gray-400 dark:text-gray-500 leading-relaxed">&ldquo;{text}&rdquo;</p>
             </div>
           ))}
         </div>

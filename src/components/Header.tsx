@@ -72,7 +72,7 @@ export default function Header() {
               <a
                 key={name}
                 href={href}
-                className="text-sm font-medium text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] transition-colors duration-200"
+                className="text-sm font-medium text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors duration-200"
               >
                 {name}
               </a>
@@ -83,7 +83,7 @@ export default function Header() {
             <ThemeToggle />
 
             <button
-              className="p-2 text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] transition-colors"
+              className="p-2 text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors"
               onClick={() => setIsSearchOpen(!isSearchOpen)}
               aria-label="Search"
             >
@@ -92,7 +92,7 @@ export default function Header() {
 
             <button
               onClick={() => router.push("/wishlist")}
-              className="p-2 text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] transition-colors hidden sm:block relative"
+              className="p-2 text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors hidden sm:block relative"
               aria-label="Wishlist"
             >
               <Heart size={20} />
@@ -106,21 +106,21 @@ export default function Header() {
             <div className="relative hidden sm:block" ref={userMenuRef}>
               <button
                 onClick={() => isLoggedIn ? setShowUserMenu(!showUserMenu) : router.push("/auth")}
-                className="p-2 text-[#16213E] hover:text-[#E94560] transition-colors"
+                className="p-2 text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors"
                 aria-label="User"
               >
                 <User size={20} />
               </button>
               {showUserMenu && isLoggedIn && (
                 <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-[#1A1A2E] rounded-2xl shadow-xl border border-gray-100 dark:border-[#2D2D4A] py-2 z-50 animate-scale-in">
-                  <div className="px-4 py-2 border-b border-gray-100">
-                    <p className="text-sm font-medium text-[#16213E]">{user?.name}</p>
-                    <p className="text-xs text-[#6C757D]">{user?.email}</p>
+                  <div className="px-4 py-2 border-b border-gray-100 dark:border-[#2D2D4A]">
+                    <p className="text-sm font-medium text-[#16213E] dark:text-[#F8F9FA]">{user?.name}</p>
+                    <p className="text-xs text-[#6C757D] dark:text-gray-400 dark:text-gray-500">{user?.email}</p>
                   </div>
-                  <button onClick={() => { router.push("/wishlist"); setShowUserMenu(false); }} className="w-full text-left px-4 py-2 text-sm text-[#16213E] hover:bg-gray-50 flex items-center gap-2">
+                  <button onClick={() => { router.push("/wishlist"); setShowUserMenu(false); }} className="w-full text-left px-4 py-2 text-sm text-[#16213E] dark:text-[#F8F9FA] hover:bg-gray-50 flex items-center gap-2">
                     <Heart size={14} /> Wishlist
                   </button>
-                  <button onClick={() => { logout(); setShowUserMenu(false); }} className="w-full text-left px-4 py-2 text-sm text-[#E94560] hover:bg-gray-50 flex items-center gap-2">
+                  <button onClick={() => { logout(); setShowUserMenu(false); }} className="w-full text-left px-4 py-2 text-sm text-[#E94560] dark:text-[#FF6B6B] hover:bg-gray-50 flex items-center gap-2">
                     <LogOut size={14} /> Logout
                   </button>
                 </div>
@@ -128,7 +128,7 @@ export default function Header() {
             </div>
 
             <button
-              className="p-2 text-[#16213E] hover:text-[#E94560] transition-colors relative"
+              className="p-2 text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors relative"
               onClick={openCart}
               aria-label="Cart"
             >
@@ -145,13 +145,13 @@ export default function Header() {
         {isSearchOpen && (
           <form onSubmit={handleSearch} className="pb-4 animate-fade-in-up">
             <div className="relative">
-              <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6C757D]" />
+              <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6C757D] dark:text-gray-400 dark:text-gray-500" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search products..."
-                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 focus:border-[#E94560] text-sm"
+                className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-[#2D2D4A] bg-white focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 focus:border-[#E94560] text-sm"
                 autoFocus
               />
             </div>
@@ -166,7 +166,7 @@ export default function Header() {
               <a
                 key={name}
                 href={href}
-                className="block py-2 text-sm font-medium text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] transition-colors"
+                className="block py-2 text-sm font-medium text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {name}
@@ -174,14 +174,14 @@ export default function Header() {
             ))}
             <a
               href="/wishlist"
-              className="block py-2 text-sm font-medium text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] transition-colors"
+              className="block py-2 text-sm font-medium text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Wishlist {wishlist.length > 0 && `(${wishlist.length})`}
             </a>
             <a
               href={isLoggedIn ? "#" : "/auth"}
-              className="block py-2 text-sm font-medium text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] transition-colors"
+              className="block py-2 text-sm font-medium text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors"
               onClick={(e) => { setIsMenuOpen(false); if (isLoggedIn) { e.preventDefault(); logout(); } }}
             >
               {isLoggedIn ? "Logout" : "Sign In"}

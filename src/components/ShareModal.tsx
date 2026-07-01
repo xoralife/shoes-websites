@@ -49,7 +49,7 @@ export default function ShareModal({ productName, productUrl, open, onClose }: S
             <h3 className="text-lg font-bold text-[#16213E] dark:text-[#F8F9FA]">Share</h3>
             <button onClick={onClose} className="p-2 hover:bg-gray-100 dark:hover:bg-[#2D2D4A] rounded-full"><X size={18} /></button>
           </div>
-          <p className="text-sm text-[#6C757D] dark:text-gray-400 mb-5 truncate">{productName}</p>
+          <p className="text-sm text-[#6C757D] dark:text-gray-400 dark:text-gray-500 mb-5 truncate">{productName}</p>
           <div className="flex gap-4 justify-center mb-5">
             {shareOptions.map(({ name, icon: Icon, color }) => (
               <button
@@ -60,11 +60,11 @@ export default function ShareModal({ productName, productUrl, open, onClose }: S
                 <div className={`w-12 h-12 rounded-2xl ${color} flex items-center justify-center shadow-md hover:scale-110 transition-transform`}>
                   {copied && name === "Copy Link" ? <Check size={20} className="text-white" /> : <Icon size={20} className="text-white" />}
                 </div>
-                <span className="text-[10px] font-medium text-[#6C757D] dark:text-gray-400">{copied && name === "Copy Link" ? "Copied!" : name}</span>
+                <span className="text-[10px] font-medium text-[#6C757D] dark:text-gray-400 dark:text-gray-500">{copied && name === "Copy Link" ? "Copied!" : name}</span>
               </button>
             ))}
           </div>
-          <div className="flex items-center gap-2 p-3 rounded-xl bg-gray-100 dark:bg-[#0F0F1A] text-xs text-[#6C757D] dark:text-gray-400 truncate">
+          <div className="flex items-center gap-2 p-3 rounded-xl bg-gray-100 dark:bg-[#0F0F1A] text-xs text-[#6C757D] dark:text-gray-400 dark:text-gray-500 truncate">
             <Link size={14} className="shrink-0" />
             <span className="truncate">{fullUrl}</span>
           </div>

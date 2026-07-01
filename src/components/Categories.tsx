@@ -13,12 +13,12 @@ export default function Categories() {
   const router = useRouter();
 
   return (
-    <section id="categories" className="py-20 bg-[#F8F9FA]">
+    <section id="categories" className="py-20 bg-[#F8F9FA] dark:bg-[#0F0F1A]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-14">
-          <span className="text-[#E94560] font-semibold text-sm tracking-wider uppercase">Categories</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#16213E] mt-2">Shop By Category</h2>
-          <p className="text-[#6C757D] mt-3 max-w-md mx-auto">
+          <span className="text-[#E94560] dark:text-[#FF6B6B] font-semibold text-sm tracking-wider uppercase">Categories</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#16213E] dark:text-[#F8F9FA] mt-2">Shop By Category</h2>
+          <p className="text-[#6C757D] dark:text-gray-400 dark:text-gray-500 mt-3 max-w-md mx-auto">
             Find the perfect pair for every occasion
           </p>
         </div>
@@ -37,10 +37,10 @@ export default function Categories() {
                   {image}
                 </span>
               </div>
-              <h3 className="mt-5 font-semibold text-[#16213E] text-lg group-hover:text-[#E94560] transition-colors">
+              <h3 className="mt-5 font-semibold text-[#16213E] dark:text-[#F8F9FA] text-lg group-hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors">
                 {name}
               </h3>
-              <p className="text-sm text-[#6C757D]">View Collection</p>
+              <p className="text-sm text-[#6C757D] dark:text-gray-400 dark:text-gray-500">View Collection</p>
             </div>
           ))}
         </div>

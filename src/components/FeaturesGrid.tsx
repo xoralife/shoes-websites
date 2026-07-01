@@ -11,12 +11,12 @@ export default function FeaturesGrid() {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {features.map(({ icon: Icon, title, desc }) => (
-        <div key={title} className="flex flex-col items-center text-center p-6 rounded-2xl bg-[#F8F9FA] hover:bg-white card-hover card-shadow transition-all">
+        <div key={title} className="flex flex-col items-center text-center p-6 rounded-2xl bg-[#F8F9FA] dark:bg-[#0F0F1A] hover:bg-white dark:hover:bg-[#1A1A2E] card-hover card-shadow transition-all">
           <div className="w-12 h-12 rounded-xl bg-[#1A1A2E]/5 flex items-center justify-center mb-3">
             <Icon size={22} className="text-[#1A1A2E]" />
           </div>
-          <h4 className="font-semibold text-[#16213E] text-sm">{title}</h4>
-          <p className="text-xs text-[#6C757D] mt-1">{desc}</p>
+          <h4 className="font-semibold text-[#16213E] dark:text-[#F8F9FA] text-sm">{title}</h4>
+          <p className="text-xs text-[#6C757D] dark:text-gray-400 dark:text-gray-500 mt-1">{desc}</p>
         </div>
       ))}
     </div>

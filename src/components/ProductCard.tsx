@@ -45,14 +45,14 @@ export default function ProductCard({ product }: ProductCardProps) {
       } else if (i === fullStars + 1 && hasHalf) {
         stars.push(
           <span key={i} className="relative">
-            <Star size={14} className="text-gray-300" />
+            <Star size={14} className="text-gray-300 dark:text-gray-600" />
             <span className="absolute inset-0 overflow-hidden w-[50%]">
               <Star size={14} className="fill-[#FEEFC0] text-[#FEEFC0]" />
             </span>
           </span>
         );
       } else {
-        stars.push(<Star key={i} size={14} className="text-gray-300" />);
+        stars.push(<Star key={i} size={14} className="text-gray-300 dark:text-gray-600" />);
       }
     }
     return stars;
@@ -83,20 +83,20 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="absolute top-3 right-3 flex flex-col gap-1.5">
           <button
             onClick={(e) => { e.stopPropagation(); toggleWishlist(product.id); }}
-            className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all"
+            className="w-9 h-9 rounded-full bg-white/80 dark:bg-[#1A1A2E]/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-[#1A1A2E] transition-all"
             aria-label="Toggle wishlist"
           >
             <Heart
               size={18}
-              className={isWishlisted ? "fill-[#E94560] text-[#E94560]" : "text-[#6C757D]"}
+              className={isWishlisted ? "fill-[#E94560] text-[#E94560] dark:text-[#FF6B6B]" : "text-[#6C757D] dark:text-gray-400 dark:text-gray-500"}
             />
           </button>
           <button
             onClick={(e) => { e.stopPropagation(); setShowShare(true); }}
-            className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all"
+            className="w-9 h-9 rounded-full bg-white/80 dark:bg-[#1A1A2E]/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-[#1A1A2E] transition-all"
             aria-label="Share product"
           >
-            <Share2 size={15} className="text-[#6C757D]" />
+            <Share2 size={15} className="text-[#6C757D] dark:text-gray-400 dark:text-gray-500" />
           </button>
         </div>
 
@@ -123,7 +123,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <button
           onClick={(e) => { e.stopPropagation(); setShowQuickView(true); }}
-          className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
+          className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 dark:bg-[#1A1A2E]/90 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white dark:hover:bg-[#1A1A2E] transition-all opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
           aria-label="Quick view"
         >
           <Eye size={16} className="text-[#1A1A2E]" />
@@ -139,18 +139,18 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className="flex items-center gap-1">
           {renderStars(product.rating)}
-          <span className="text-xs text-[#6C757D] dark:text-gray-400 ml-1">{product.rating}</span>
-          <span className="text-xs text-[#6C757D] dark:text-gray-400 ml-1">({reviewCounts[product.id] || Math.floor(Math.random() * 200) + 20} reviews)</span>
+          <span className="text-xs text-[#6C757D] dark:text-gray-400 dark:text-gray-500 ml-1">{product.rating}</span>
+          <span className="text-xs text-[#6C757D] dark:text-gray-400 dark:text-gray-500 ml-1">({reviewCounts[product.id] || Math.floor(Math.random() * 200) + 20} reviews)</span>
         </div>
 
         <div className="flex items-center gap-2">
           <span className="text-xl font-bold text-[#16213E] dark:text-[#F8F9FA]">${product.price.toFixed(2)}</span>
           {product.originalPrice > product.price && (
-            <span className="text-sm text-[#6C757D] dark:text-gray-400 line-through">${product.originalPrice.toFixed(2)}</span>
+            <span className="text-sm text-[#6C757D] dark:text-gray-400 dark:text-gray-500 line-through">${product.originalPrice.toFixed(2)}</span>
           )}
         </div>
 
-        <div className={`flex items-center gap-2 text-xs ${isOutOfStock ? "text-red-500" : isLowStock ? "text-amber-500" : "text-green-600"}`}>
+        <div className={`flex items-center gap-2 text-xs ${isOutOfStock ? "text-red-500" : isLowStock ? "text-amber-500" : "text-green-600 dark:text-green-400"}`}>
           <span className={`w-2 h-2 rounded-full inline-block animate-pulse-slow ${isOutOfStock ? "bg-red-500" : isLowStock ? "bg-amber-500" : "bg-green-500"}`} />
           {isOutOfStock ? "Out of Stock" : isLowStock ? `Only ${product.stock} left` : "In Stock"}
         </div>

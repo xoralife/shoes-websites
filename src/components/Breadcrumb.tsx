@@ -8,17 +8,17 @@ interface BreadcrumbItem {
 
 export default function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
   return (
-    <nav className="flex items-center gap-1 text-sm text-[#6C757D] py-4">
-      <Link href="/" className="hover:text-[#E94560] transition-colors">
+    <nav className="flex items-center gap-1 text-sm text-[#6C757D] dark:text-gray-400 dark:text-gray-500 py-4">
+      <Link href="/" className="hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors">
         <Home size={14} />
       </Link>
       {items.map((item, i) => (
         <span key={item.label} className="flex items-center gap-1">
           <ChevronRight size={12} />
           {i === items.length - 1 ? (
-            <span className="text-[#16213E] font-medium">{item.label}</span>
+            <span className="text-[#16213E] dark:text-[#F8F9FA] font-medium">{item.label}</span>
           ) : (
-            <Link href={item.href || "#"} className="hover:text-[#E94560] transition-colors">{item.label}</Link>
+            <Link href={item.href || "#"} className="hover:text-[#E94560] dark:text-[#FF6B6B] transition-colors">{item.label}</Link>
           )}
         </span>
       ))}

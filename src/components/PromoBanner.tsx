@@ -44,7 +44,7 @@ export default function PromoBanner() {
 
         <a
           href="#featured"
-          className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-white text-[#E94560] font-bold text-sm hover:bg-white/90 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+          className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-white text-[#E94560] dark:text-[#FF6B6B] font-bold text-sm hover:bg-white dark:hover:bg-[#1A1A2E]/90 dark:bg-[#1A1A2E]/90 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
         >
           Grab Now
           <Zap size={16} />

@@ -38,11 +38,11 @@ export default function MobileBottomNav() {
             onClick={() => { if (action) action(); else router.push(href); }}
             className="flex flex-col items-center gap-0.5 px-4 py-1 relative"
           >
-            <Icon size={20} className={active ? "text-[#E94560]" : "text-[#6C757D] dark:text-gray-400"} />
+            <Icon size={20} className={active ? "text-[#E94560] dark:text-[#FF6B6B]" : "text-[#6C757D] dark:text-gray-400 dark:text-gray-500"} />
             {!!badge && badge > 0 && (
               <span className="absolute -top-0.5 right-2 bg-[#E94560] text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">{badge}</span>
             )}
-            <span className={`text-[10px] font-medium ${active ? "text-[#E94560]" : "text-[#6C757D] dark:text-gray-400"}`}>{label}</span>
+            <span className={`text-[10px] font-medium ${active ? "text-[#E94560] dark:text-[#FF6B6B]" : "text-[#6C757D] dark:text-gray-400 dark:text-gray-500"}`}>{label}</span>
           </button>
         ))}
       </div>

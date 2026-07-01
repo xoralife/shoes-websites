@@ -31,7 +31,7 @@ export default function Footer() {
             <span className="text-2xl font-bold bg-gradient-to-r from-[#E94560] to-[#FF6B6B] bg-clip-text text-transparent">
               SOLEMATE
             </span>
-            <p className="mt-4 text-gray-400 text-sm leading-relaxed max-w-xs">
+            <p className="mt-4 text-gray-400 dark:text-gray-500 text-sm leading-relaxed max-w-xs">
               Premium sneakers crafted for comfort &amp; style. Redefine your stride with every step.
             </p>
             <div className="flex gap-3 mt-6">
@@ -47,7 +47,7 @@ export default function Footer() {
             </div>
             <div className="flex gap-2 mt-4 flex-wrap">
               {["Visa", "MC", "Amex", "PayPal", "Apple Pay"].map((p) => (
-                <span key={p} className="px-3 py-1.5 bg-white/5 rounded-lg text-xs text-gray-400 font-medium border border-white/5">
+                <span key={p} className="px-3 py-1.5 bg-white/5 rounded-lg text-xs text-gray-400 dark:text-gray-500 font-medium border border-white/5">
                   {p}
                 </span>
               ))}
@@ -60,7 +60,7 @@ export default function Footer() {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-gray-400 text-sm hover:text-white transition-colors">
+                    <a href="#" className="text-gray-400 dark:text-gray-500 text-sm hover:text-white transition-colors">
                       {link}
                     </a>
                   </li>

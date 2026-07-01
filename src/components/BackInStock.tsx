@@ -21,7 +21,7 @@ export default function BackInStock({ productName }: BackInStockProps) {
 
   if (submitted) {
     return (
-      <p className="text-sm text-green-600 flex items-center gap-1">
+      <p className="text-sm text-green-600 dark:text-green-400 flex items-center gap-1">
         <Bell size={14} /> We&apos;ll notify you when {productName} is back!
       </p>
     );
@@ -35,7 +35,7 @@ export default function BackInStock({ productName }: BackInStockProps) {
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Your email"
         required
-        className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20"
+        className="flex-1 px-3 py-2 border border-gray-200 dark:border-[#2D2D4A] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20"
       />
       <button type="submit" className="px-4 py-2 rounded-lg bg-[#1A1A2E] text-white text-sm font-medium hover:bg-[#0F3460] transition-colors whitespace-nowrap">
         Notify Me

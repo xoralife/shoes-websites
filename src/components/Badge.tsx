@@ -9,7 +9,7 @@ const variants = {
   default: "bg-[#1A1A2E]/80 text-white",
   sale: "bg-[#E94560] text-white",
   new: "bg-green-500 text-white",
-  outline: "bg-transparent border border-[#E94560] text-[#E94560]",
+  outline: "bg-transparent border border-[#E94560] text-[#E94560] dark:text-[#FF6B6B]",
 };
 
 export default function Badge({ children, variant = "default" }: BadgeProps) {

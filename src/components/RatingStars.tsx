@@ -14,11 +14,11 @@ export default function RatingStars({ rating, size = 14, showCount, count }: Rat
         <Star
           key={i}
           size={size}
-          className={i < Math.floor(rating) ? "fill-[#FEEFC0] text-[#FEEFC0]" : "text-gray-300"}
+          className={i < Math.floor(rating) ? "fill-[#FEEFC0] text-[#FEEFC0]" : "text-gray-300 dark:text-gray-600"}
         />
       ))}
       {showCount && count !== undefined && (
-        <span className="text-xs text-[#6C757D] ml-1">({count})</span>
+        <span className="text-xs text-[#6C757D] dark:text-gray-400 dark:text-gray-500 ml-1">({count})</span>
       )}
     </div>
   );

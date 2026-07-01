@@ -21,7 +21,7 @@ export default function CouponInput() {
   return (
     <div className="border-t border-gray-100 dark:border-[#2D2D4A] pt-4 mt-4">
       {appliedCoupon ? (
-        <div className="flex items-center justify-between gap-2 text-green-600 text-sm font-medium">
+        <div className="flex items-center justify-between gap-2 text-green-600 dark:text-green-400 text-sm font-medium">
           <div className="flex items-center gap-2">
             <Tag size={16} />
             {discountLabel} applied
@@ -47,7 +47,7 @@ export default function CouponInput() {
           </div>
           {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
           {discount === 0 && (
-            <p className="text-xs text-[#6C757D] dark:text-gray-400 mt-1">Try: {COUPON_EXAMPLES.join(", ")}</p>
+            <p className="text-xs text-[#6C757D] dark:text-gray-400 dark:text-gray-500 mt-1">Try: {COUPON_EXAMPLES.join(", ")}</p>
           )}
         </div>
       )}

@@ -42,15 +42,15 @@ export default function SizeGuideModal({ open, onClose }: SizeGuideModalProps) {
                 {sizeData.map((row) => (
                   <tr key={row.us} className="border-t border-gray-100 dark:border-[#2D2D4A]">
                     <td className="px-4 py-3 text-[#16213E] dark:text-[#F8F9FA]">{row.us}</td>
-                    <td className="px-4 py-3 text-[#6C757D] dark:text-gray-400">{row.uk}</td>
-                    <td className="px-4 py-3 text-[#6C757D] dark:text-gray-400">{row.eu}</td>
-                    <td className="px-4 py-3 text-[#6C757D] dark:text-gray-400">{row.cm} cm</td>
+                    <td className="px-4 py-3 text-[#6C757D] dark:text-gray-400 dark:text-gray-500">{row.uk}</td>
+                    <td className="px-4 py-3 text-[#6C757D] dark:text-gray-400 dark:text-gray-500">{row.eu}</td>
+                    <td className="px-4 py-3 text-[#6C757D] dark:text-gray-400 dark:text-gray-500">{row.cm} cm</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-[#6C757D] mt-4">Measure your foot from heel to toe and match with the CM column.</p>
+          <p className="text-xs text-[#6C757D] dark:text-gray-400 dark:text-gray-500 mt-4">Measure your foot from heel to toe and match with the CM column.</p>
         </div>
       </div>
     </>

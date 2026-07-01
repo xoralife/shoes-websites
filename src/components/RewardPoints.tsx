@@ -9,8 +9,8 @@ export default function RewardPoints() {
             <Star size={24} className="text-[#FEEFC0]" />
           </div>
           <div>
-            <h3 className="text-xl font-bold text-[#16213E]">SOLEMATE Rewards</h3>
-            <p className="text-sm text-[#6C757D]">Earn points on every purchase. 1 point = $0.10</p>
+            <h3 className="text-xl font-bold text-[#16213E] dark:text-[#F8F9FA]">SOLEMATE Rewards</h3>
+            <p className="text-sm text-[#6C757D] dark:text-gray-400 dark:text-gray-500">Earn points on every purchase. 1 point = $0.10</p>
           </div>
         </div>
         <a href="#" className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1A1A2E] text-white text-sm font-medium hover:bg-[#0F3460] transition-all">
