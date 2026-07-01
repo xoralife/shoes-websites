@@ -104,3 +104,7 @@ Pull requests are welcome!
 
 ## 📄 License
 MIT
+
+---
+
+**Built with ❤️ by SOLEMATE Team | Version 1.0.0**
