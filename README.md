@@ -1,19 +1,44 @@
 # SOLEMATE - Premium Shoes Store
 
 ## 🚀 Live Demo
-[Link to live demo]
+[View Live Demo](https://xoralife.github.io/shoes-websites)
 
 ## 📸 Screenshots
-[Add screenshots]
+![SOLEMATE Hero](./public/images/hero-shoe.svg)
 
 ## ✨ Features
 - Modern glass-morphism UI design
 - Fully responsive (Mobile, Tablet, Desktop)
-- Add to cart functionality
-- Wishlist feature
-- Countdown timer
-- Category filtering
-- Testimonials section
+- Product catalog with 8+ products
+- Add to cart functionality with quantity controls
+- Wishlist feature with heart toggle
+- Countdown timer for promotions
+- Category filtering with sort options
+- Product quick view modal
+- Size guide with US/UK/EU chart
+- Customer testimonials section
+- FAQ accordion section
+- Newsletter subscription with success state
+- Cookie consent banner
+- Newsletter popup with discount offer
+- Scroll progress indicator
+- Back to top button
+- Social share buttons
+- Brand story section
+- Instagram feed section
+- Trust badges section
+- Bundle offers section
+- Reward points promotion
+- Gift card section
+- Referral program
+- Order tracking form
+- Shipping information
+- Return policy section
+- Live chat widget
+- SEO optimized with sitemap
+- PWA manifest support
+- Accessibility (keyboard nav, screen reader)
+- Smooth animations and micro-interactions
 
 ## 🛠️ Technologies Used
 - Next.js 15 (App Router)
