@@ -2,7 +2,7 @@
 
 import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { ShoppingBag, Heart, Star, ArrowLeft, Minus, Plus, Truck, Shield, RotateCcw, MessageCircle } from "lucide-react";
+import { ShoppingBag, Heart, Star, ArrowLeft, Minus, Plus, Truck, Shield, RotateCcw, MessageCircle, Ruler } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { getProductById, getRelatedProducts } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
@@ -10,6 +10,8 @@ import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
 import Toast from "@/components/Toast";
 import Footer from "@/components/Footer";
+import SizeGuideModal from "@/components/SizeGuideModal";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 const sizes = ["US 7", "US 8", "US 9", "US 10", "US 11"];
 const colors = ["#1A1A2E", "#E94560", "#0F3460", "#FEEFC0", "#6C757D"];
@@ -22,6 +24,7 @@ export default function ProductDetailPage() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [quantity, setQuantity] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [showSizeGuide, setShowSizeGuide] = useState(false);
   const [reviews, setReviews] = useState<{ name: string; rating: number; comment: string; date: string }[]>([]);
   const [reviewName, setReviewName] = useState("");
   const [reviewRating, setReviewRating] = useState(5);
@@ -78,16 +81,16 @@ export default function ProductDetailPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA]">
+    <div className="min-h-screen bg-[#F8F9FA] dark:bg-[#0F0F1A]">
       <Header />
       <main className="pt-24 pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <button onClick={() => router.back()} className="flex items-center gap-2 text-[#6C757D] hover:text-[#E94560] transition-colors mb-6">
+          <button onClick={() => router.back()} className="flex items-center gap-2 text-[#6C757D] dark:text-gray-400 hover:text-[#E94560] transition-colors mb-6">
             <ArrowLeft size={18} />
             <span className="text-sm font-medium">Back</span>
           </button>
 
-          <div className="bg-white rounded-3xl overflow-hidden card-shadow">
+          <div className="bg-white dark:bg-[#1A1A2E] rounded-3xl overflow-hidden card-shadow">
             <div className="grid md:grid-cols-2 gap-0">
               <div className="bg-gradient-to-br from-gray-50 to-gray-100 p-8 md:p-16 flex items-center justify-center">
                 <svg viewBox="0 0 400 400" className="w-full max-w-sm floating" fill="none">
@@ -112,7 +115,7 @@ export default function ProductDetailPage() {
 
               <div className="p-6 md:p-12 flex flex-col justify-center">
                 <span className="text-xs font-semibold text-[#E94560] uppercase tracking-wider">{product.category}</span>
-                <h1 className="text-2xl md:text-4xl font-bold text-[#16213E] mt-2">{product.name}</h1>
+                <h1 className="text-2xl md:text-4xl font-bold text-[#16213E] dark:text-[#F8F9FA] mt-2">{product.name}</h1>
 
                 <div className="flex items-center gap-1 mt-3">
                   {Array.from({ length: 5 }).map((_, i) => (
@@ -123,7 +126,7 @@ export default function ProductDetailPage() {
                 </div>
 
                 <div className="flex items-baseline gap-3 mt-4">
-                  <span className="text-3xl font-bold text-[#16213E]">${product.price.toFixed(2)}</span>
+                  <span className="text-3xl font-bold text-[#16213E] dark:text-[#F8F9FA]">${product.price.toFixed(2)}</span>
                   {product.originalPrice > product.price && (
                     <span className="text-lg text-[#6C757D] line-through">${product.originalPrice.toFixed(2)}</span>
                   )}
@@ -140,7 +143,12 @@ export default function ProductDetailPage() {
                 </p>
 
                 <div className="mt-6">
-                  <p className="text-sm font-semibold text-[#16213E] mb-3">Size</p>
+                  <div className="flex items-center gap-2 mb-3">
+                    <p className="text-sm font-semibold text-[#16213E] dark:text-[#F8F9FA]">Size</p>
+                    <button onClick={() => setShowSizeGuide(true)} className="text-xs text-[#E94560] hover:underline flex items-center gap-1">
+                      <Ruler size={12} /> Size Guide
+                    </button>
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {sizes.map((size) => (
                       <button
@@ -149,7 +157,7 @@ export default function ProductDetailPage() {
                         className={`px-5 py-2.5 rounded-xl border text-sm font-medium transition-all duration-200 ${
                           selectedSize === size
                             ? "bg-[#1A1A2E] text-white border-[#1A1A2E]"
-                            : "border-gray-200 text-[#6C757D] hover:border-[#E94560] hover:text-[#E94560]"
+                            : "border-gray-200 dark:border-[#2D2D4A] text-[#6C757D] dark:text-gray-400 hover:border-[#E94560] hover:text-[#E94560]"
                         }`}
                       >
                         {size}
@@ -303,6 +311,8 @@ export default function ProductDetailPage() {
           )}
         </div>
       </main>
+      <SizeGuideModal open={showSizeGuide} onClose={() => setShowSizeGuide(false)} />
+      <MobileBottomNav />
       <CartSidebar />
       <Toast />
       <Footer />

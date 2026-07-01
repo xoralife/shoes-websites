@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
 import Toast from "@/components/Toast";
 import Footer from "@/components/Footer";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 const categoryNames: Record<string, string> = {
   men: "Men",
@@ -60,6 +61,7 @@ export default function CategoryPage() {
           )}
         </div>
       </main>
+      <MobileBottomNav />
       <CartSidebar />
       <Toast />
       <Footer />

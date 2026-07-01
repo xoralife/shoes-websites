@@ -2,6 +2,19 @@
 
 import { createContext, useContext, useState, useEffect, useCallback, useMemo, useRef, type ReactNode } from "react";
 
+interface Coupon {
+  code: string;
+  type: "percent" | "flat";
+  value: number;
+  label: string;
+}
+
+const VALID_COUPONS: Coupon[] = [
+  { code: "SOLE20", type: "percent", value: 20, label: "20% Off" },
+  { code: "FREESHIP", type: "flat", value: 15, label: "Free Shipping" },
+  { code: "SOLEMATE10", type: "percent", value: 10, label: "10% Off" },
+];
+
 export interface Product {
   id: number;
   name: string;
@@ -10,6 +23,7 @@ export interface Product {
   originalPrice: number;
   rating: number;
   image: string;
+  stock?: number;
 }
 
 export interface CartItem extends Product {
@@ -32,6 +46,12 @@ interface CartContextType {
   dismissToast: () => void;
   cartCount: number;
   cartTotal: number;
+  discountedTotal: number;
+  discount: number;
+  discountLabel: string;
+  appliedCoupon: string;
+  applyCoupon: (code: string) => boolean;
+  removeCoupon: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -42,6 +62,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isToastVisible, setIsToastVisible] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [discountLabel, setDiscountLabel] = useState("");
 
   useEffect(() => {
     const savedCart = localStorage.getItem("solemate-cart");
@@ -108,6 +131,23 @@ export function CartProvider({ children }: { children: ReactNode }) {
     );
   }, []);
 
+  const applyCoupon = useCallback((code: string): boolean => {
+    const coupon = VALID_COUPONS.find((c) => c.code === code.toUpperCase());
+    if (!coupon) return false;
+    const rawTotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const disc = coupon.type === "percent" ? rawTotal * (coupon.value / 100) : coupon.value;
+    setDiscount(disc);
+    setDiscountLabel(coupon.label);
+    setAppliedCoupon(coupon.code);
+    return true;
+  }, [cart]);
+
+  const removeCoupon = useCallback(() => {
+    setDiscount(0);
+    setDiscountLabel("");
+    setAppliedCoupon("");
+  }, []);
+
   const openCart = useCallback(() => setIsCartOpen(true), []);
   const closeCart = useCallback(() => setIsCartOpen(false), []);
   useEffect(() => () => { if (toastTimer.current) clearTimeout(toastTimer.current); }, []);
@@ -116,6 +156,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const cartCount = useMemo(() => cart.reduce((sum, item) => sum + item.quantity, 0), [cart]);
   const cartTotal = useMemo(() => cart.reduce((sum, item) => sum + item.price * item.quantity, 0), [cart]);
+  const discountedTotal = useMemo(() => Math.max(0, cartTotal - discount), [cartTotal, discount]);
 
   return (
     <CartContext.Provider
@@ -135,6 +176,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
         dismissToast,
         cartCount,
         cartTotal,
+        discountedTotal,
+        discount,
+        discountLabel,
+        appliedCoupon,
+        applyCoupon,
+        removeCoupon,
       }}
     >
       {children}

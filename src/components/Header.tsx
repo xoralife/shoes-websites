@@ -5,6 +5,7 @@ import { Search, User, ShoppingBag, Menu, X, Heart, LogOut } from "lucide-react"
 import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -71,16 +72,18 @@ export default function Header() {
               <a
                 key={name}
                 href={href}
-                className="text-sm font-medium text-[#16213E] hover:text-[#E94560] transition-colors duration-200"
+                className="text-sm font-medium text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] transition-colors duration-200"
               >
                 {name}
               </a>
             ))}
           </nav>
 
-          <div className="flex items-center gap-3 md:gap-4">
+          <div className="flex items-center gap-1 md:gap-4">
+            <ThemeToggle />
+
             <button
-              className="p-2 text-[#16213E] hover:text-[#E94560] transition-colors"
+              className="p-2 text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] transition-colors"
               onClick={() => setIsSearchOpen(!isSearchOpen)}
               aria-label="Search"
             >
@@ -89,7 +92,7 @@ export default function Header() {
 
             <button
               onClick={() => router.push("/wishlist")}
-              className="p-2 text-[#16213E] hover:text-[#E94560] transition-colors hidden sm:block relative"
+              className="p-2 text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] transition-colors hidden sm:block relative"
               aria-label="Wishlist"
             >
               <Heart size={20} />
@@ -109,7 +112,7 @@ export default function Header() {
                 <User size={20} />
               </button>
               {showUserMenu && isLoggedIn && (
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50 animate-scale-in">
+                <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-[#1A1A2E] rounded-2xl shadow-xl border border-gray-100 dark:border-[#2D2D4A] py-2 z-50 animate-scale-in">
                   <div className="px-4 py-2 border-b border-gray-100">
                     <p className="text-sm font-medium text-[#16213E]">{user?.name}</p>
                     <p className="text-xs text-[#6C757D]">{user?.email}</p>
@@ -157,13 +160,13 @@ export default function Header() {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white animate-fade-in-up">
+        <div className="md:hidden border-t border-gray-100 dark:border-[#2D2D4A] bg-white dark:bg-[#1A1A2E] animate-fade-in-up">
           <div className="px-4 py-3 space-y-2">
             {navLinks.map(({ name, href }) => (
               <a
                 key={name}
                 href={href}
-                className="block py-2 text-sm font-medium text-[#16213E] hover:text-[#E94560] transition-colors"
+                className="block py-2 text-sm font-medium text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {name}
@@ -171,14 +174,14 @@ export default function Header() {
             ))}
             <a
               href="/wishlist"
-              className="block py-2 text-sm font-medium text-[#16213E] hover:text-[#E94560] transition-colors"
+              className="block py-2 text-sm font-medium text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Wishlist {wishlist.length > 0 && `(${wishlist.length})`}
             </a>
             <a
               href={isLoggedIn ? "#" : "/auth"}
-              className="block py-2 text-sm font-medium text-[#16213E] hover:text-[#E94560] transition-colors"
+              className="block py-2 text-sm font-medium text-[#16213E] dark:text-[#F8F9FA] hover:text-[#E94560] transition-colors"
               onClick={(e) => { setIsMenuOpen(false); if (isLoggedIn) { e.preventDefault(); logout(); } }}
             >
               {isLoggedIn ? "Logout" : "Sign In"}

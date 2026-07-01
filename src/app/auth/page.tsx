@@ -6,6 +6,7 @@ import { Mail, Lock, User, ArrowLeft } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 export default function AuthPage() {
   const router = useRouter();
@@ -76,6 +77,7 @@ export default function AuthPage() {
           </div>
         </div>
       </main>
+      <MobileBottomNav />
       <Footer />
     </div>
   );

@@ -4,6 +4,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { CheckCircle, Package, ArrowLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 export default function OrderConfirmationPage() {
   const searchParams = useSearchParams();
@@ -44,6 +45,7 @@ export default function OrderConfirmationPage() {
           </button>
         </div>
       </main>
+      <MobileBottomNav />
       <Footer />
     </div>
   );

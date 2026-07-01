@@ -5,6 +5,7 @@ import { useCart, type Product } from "@/context/CartContext";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import QuickViewModal from "./QuickViewModal";
+import ShareModal from "./ShareModal";
 
 interface ProductCardProps {
   product: Product;
@@ -16,7 +17,10 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart, toggleWishlist, wishlist } = useCart();
   const router = useRouter();
   const [showQuickView, setShowQuickView] = useState(false);
+  const [showShare, setShowShare] = useState(false);
   const isWishlisted = wishlist.includes(product.id);
+  const isOutOfStock = product.stock === 0;
+  const isLowStock = product.stock !== undefined && product.stock > 0 && product.stock <= 3;
 
   useEffect(() => {
     if (!reviewCounts[product.id]) {
@@ -88,7 +92,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             />
           </button>
           <button
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => { e.stopPropagation(); setShowShare(true); }}
             className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all"
             aria-label="Share product"
           >
@@ -100,7 +104,17 @@ export default function ProductCard({ product }: ProductCardProps) {
           <span className="px-2.5 py-1 bg-[#1A1A2E]/80 text-white text-xs font-medium rounded-full backdrop-blur-sm">
             {product.category}
           </span>
-          {product.originalPrice > product.price && (
+          {isOutOfStock && (
+            <span className="px-2.5 py-1 bg-gray-600 text-white text-xs font-bold rounded-full">
+              Out of Stock
+            </span>
+          )}
+          {isLowStock && !isOutOfStock && (
+            <span className="px-2.5 py-1 bg-amber-500 text-white text-xs font-bold rounded-full animate-pulse-slow">
+              Low Stock
+            </span>
+          )}
+          {product.originalPrice > product.price && !isOutOfStock && (
             <span className="px-2.5 py-1 bg-[#E94560] text-white text-xs font-bold rounded-full">
               -{Math.round((1 - product.price / product.originalPrice) * 100)}%
             </span>
@@ -136,19 +150,24 @@ export default function ProductCard({ product }: ProductCardProps) {
           )}
         </div>
 
-        <div className="flex items-center gap-2 text-xs text-green-600">
-          <span className="w-2 h-2 rounded-full bg-green-500 inline-block animate-pulse-slow" />
-          In Stock
+        <div className={`flex items-center gap-2 text-xs ${isOutOfStock ? "text-red-500" : isLowStock ? "text-amber-500" : "text-green-600"}`}>
+          <span className={`w-2 h-2 rounded-full inline-block animate-pulse-slow ${isOutOfStock ? "bg-red-500" : isLowStock ? "bg-amber-500" : "bg-green-500"}`} />
+          {isOutOfStock ? "Out of Stock" : isLowStock ? `Only ${product.stock} left` : "In Stock"}
         </div>
 
         <button
-          onClick={(e) => { e.stopPropagation(); addToCart(product); }}
-          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-white font-medium text-sm bg-[#E94560] hover:bg-[#d63851] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#E94560]/25"
+          onClick={(e) => { e.stopPropagation(); if (!isOutOfStock) addToCart(product); }}
+          disabled={isOutOfStock}
+          className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-white font-medium text-sm bg-[#E94560] hover:bg-[#d63851] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#E94560]/25 disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none"
         >
           <ShoppingBag size={16} />
-          Add to Cart
+          {isOutOfStock ? "Out of Stock" : "Add to Cart"}
         </button>
       </div>
+
+      {showShare && (
+        <ShareModal productName={product.name} productUrl={`/product/${product.id}`} open={showShare} onClose={() => setShowShare(false)} />
+      )}
     </div>
   );
 }

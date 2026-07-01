@@ -8,7 +8,7 @@ import CouponInput from "./CouponInput";
 import ShippingBar from "./ShippingBar";
 
 export default function CartSidebar() {
-  const { cart, isCartOpen, closeCart, removeFromCart, incrementQuantity, decrementQuantity, cartTotal } = useCart();
+  const { cart, isCartOpen, closeCart, removeFromCart, incrementQuantity, decrementQuantity, cartTotal, discount, discountLabel } = useCart();
   const router = useRouter();
 
   useEffect(() => {
@@ -113,9 +113,15 @@ export default function CartSidebar() {
         {cart.length > 0 && (
           <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-100 bg-white">
             <CouponInput />
+            {discount > 0 && (
+              <div className="flex items-center justify-between mb-2 text-green-600">
+                <span className="font-semibold text-sm">{discountLabel}</span>
+                <span className="font-medium text-sm">-${discount.toFixed(2)}</span>
+              </div>
+            )}
             <div className="flex items-center justify-between mb-4">
-              <span className="font-semibold text-[#16213E]">Total</span>
-              <span className="text-xl font-bold text-[#16213E]">${cartTotal.toFixed(2)}</span>
+              <span className="font-semibold text-[#16213E] dark:text-[#F8F9FA]">Total</span>
+              <span className="text-xl font-bold text-[#16213E] dark:text-[#F8F9FA]">${Math.max(0, cartTotal - discount).toFixed(2)}</span>
             </div>
             <button onClick={() => { closeCart(); router.push("/checkout"); }} className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#1A1A2E] text-white font-medium text-sm hover:bg-[#0F3460] transition-all duration-300">
             Proceed to Checkout <ArrowRight size={16} />

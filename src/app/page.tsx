@@ -31,6 +31,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 import ScrollProgress from "@/components/ScrollProgress";
 import CookieConsent from "@/components/CookieConsent";
 import NewsletterPopup from "@/components/NewsletterPopup";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 function HomeContent() {
   const searchParams = useSearchParams();
@@ -68,7 +69,7 @@ function CategoriesFallback() {
 
 export default function Home() {
   return (
-    <main id="main-content" className="min-h-screen">
+    <main id="main-content" className="min-h-screen bg-[#F8F9FA] dark:bg-[#0F0F1A]">
       <ScrollProgress />
       <Header />
       <Hero />
@@ -99,6 +100,7 @@ export default function Home() {
       <ScrollToTop />
       <CookieConsent />
       <NewsletterPopup />
+      <MobileBottomNav />
     </main>
   );
 }

@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ShoppingBag, CreditCard, Shield, ArrowLeft, Trash2, Truck, Minus, Plus } from "lucide-react";
+import { ShoppingBag, CreditCard, Shield, ArrowLeft, Trash2, Truck, Minus, Plus, Loader2, AlertCircle } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
 import Toast from "@/components/Toast";
 import Footer from "@/components/Footer";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 const paymentMethods = [
   { id: "card", name: "Credit Card", icon: CreditCard },
@@ -21,6 +22,7 @@ export default function CheckoutPage() {
   const [paymentMethod, setPaymentMethod] = useState("card");
   const [placing, setPlacing] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", phone: "", address: "", city: "", state: "", zip: "" });
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
   if (cart.length === 0) {
     return (
@@ -44,9 +46,12 @@ export default function CheckoutPage() {
   const total = subtotal + shipping;
 
   const handlePlaceOrder = () => {
-    const required = ["name", "email", "phone", "address", "city", "state", "zip"];
-    const empty = required.filter((f) => !form[f as keyof typeof form].trim());
-    if (empty.length > 0) return;
+    const required = ["name", "email", "phone", "address", "city", "state", "zip"] as const;
+    const errors: Record<string, string> = {};
+    required.forEach((f) => { if (!form[f].trim()) errors[f] = `${f.charAt(0).toUpperCase() + f.slice(1)} is required`; });
+    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errors.email = "Invalid email format";
+    setFormErrors(errors);
+    if (Object.keys(errors).length > 0) return;
 
     setPlacing(true);
     const order = {
@@ -83,14 +88,41 @@ export default function CheckoutPage() {
             <div className="lg:col-span-2 space-y-6">
               <div className="bg-white rounded-2xl p-6 md:p-8 card-shadow">
                 <h2 className="text-lg font-bold text-[#16213E] mb-5">Shipping Information</h2>
+                {Object.keys(formErrors).length > 0 && (
+                  <div className="mb-4 p-3 rounded-xl bg-red-50 border border-red-200 flex items-start gap-2">
+                    <AlertCircle size={16} className="text-red-500 mt-0.5 shrink-0" />
+                    <p className="text-sm text-red-600">Please fill in all required fields correctly.</p>
+                  </div>
+                )}
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <input placeholder="Full Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="sm:col-span-2 px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
-                  <input placeholder="Email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
-                  <input placeholder="Phone" type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
-                  <input placeholder="Street Address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} className="sm:col-span-2 px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
-                  <input placeholder="City" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} className="px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
-                  <input placeholder="State" value={form.state} onChange={(e) => setForm({ ...form, state: e.target.value })} className="px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
-                  <input placeholder="ZIP Code" value={form.zip} onChange={(e) => setForm({ ...form, zip: e.target.value })} className="px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
+                  <div className="sm:col-span-2">
+                    <input placeholder="Full Name" value={form.name} onChange={(e) => { setForm({ ...form, name: e.target.value }); setFormErrors({ ...formErrors, name: "" }); }} className={`sm:col-span-2 w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.name ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    {formErrors.name && <p className="text-xs text-red-500 mt-1">{formErrors.name}</p>}
+                  </div>
+                  <div>
+                    <input placeholder="Email" type="email" value={form.email} onChange={(e) => { setForm({ ...form, email: e.target.value }); setFormErrors({ ...formErrors, email: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.email ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    {formErrors.email && <p className="text-xs text-red-500 mt-1">{formErrors.email}</p>}
+                  </div>
+                  <div>
+                    <input placeholder="Phone" type="tel" value={form.phone} onChange={(e) => { setForm({ ...form, phone: e.target.value }); setFormErrors({ ...formErrors, phone: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.phone ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    {formErrors.phone && <p className="text-xs text-red-500 mt-1">{formErrors.phone}</p>}
+                  </div>
+                  <div className="sm:col-span-2">
+                    <input placeholder="Street Address" value={form.address} onChange={(e) => { setForm({ ...form, address: e.target.value }); setFormErrors({ ...formErrors, address: "" }); }} className={`sm:col-span-2 w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.address ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    {formErrors.address && <p className="text-xs text-red-500 mt-1">{formErrors.address}</p>}
+                  </div>
+                  <div>
+                    <input placeholder="City" value={form.city} onChange={(e) => { setForm({ ...form, city: e.target.value }); setFormErrors({ ...formErrors, city: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.city ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    {formErrors.city && <p className="text-xs text-red-500 mt-1">{formErrors.city}</p>}
+                  </div>
+                  <div>
+                    <input placeholder="State" value={form.state} onChange={(e) => { setForm({ ...form, state: e.target.value }); setFormErrors({ ...formErrors, state: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.state ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    {formErrors.state && <p className="text-xs text-red-500 mt-1">{formErrors.state}</p>}
+                  </div>
+                  <div>
+                    <input placeholder="ZIP Code" value={form.zip} onChange={(e) => { setForm({ ...form, zip: e.target.value }); setFormErrors({ ...formErrors, zip: "" }); }} className={`w-full px-4 py-3 rounded-xl border text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 ${formErrors.zip ? "border-red-400 bg-red-50" : "border-gray-200"}`} />
+                    {formErrors.zip && <p className="text-xs text-red-500 mt-1">{formErrors.zip}</p>}
+                  </div>
                 </div>
               </div>
 
@@ -149,7 +181,7 @@ export default function CheckoutPage() {
                   disabled={placing}
                   className="w-full mt-6 py-3.5 rounded-xl bg-[#1A1A2E] text-white font-medium text-sm hover:bg-[#0F3460] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
-                  {placing ? "Placing Order..." : `Place Order - $${total.toFixed(2)}`}
+                  {placing ? <><Loader2 size={18} className="animate-spin" /> Placing Order...</> : `Place Order - $${total.toFixed(2)}`}
                 </button>
                 <p className="text-xs text-[#6C757D] text-center mt-3 flex items-center justify-center gap-1"><Shield size={12} /> Secure SSL Encrypted Checkout</p>
               </div>
@@ -157,6 +189,7 @@ export default function CheckoutPage() {
           </div>
         </div>
       </main>
+      <MobileBottomNav />
       <CartSidebar />
       <Toast />
       <Footer />

@@ -8,6 +8,7 @@ import Header from "@/components/Header";
 import CartSidebar from "@/components/CartSidebar";
 import Toast from "@/components/Toast";
 import Footer from "@/components/Footer";
+import MobileBottomNav from "@/components/MobileBottomNav";
 
 export default function WishlistPage() {
   const router = useRouter();
@@ -78,6 +79,7 @@ export default function WishlistPage() {
           )}
         </div>
       </main>
+      <MobileBottomNav />
       <CartSidebar />
       <Toast />
       <Footer />
