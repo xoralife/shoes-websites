@@ -1,11 +1,17 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 const categories = [
-  { name: "Men", image: "M", color: "from-blue-400 to-blue-600" },
-  { name: "Women", image: "W", color: "from-pink-400 to-pink-600" },
-  { name: "Kids", image: "K", color: "from-yellow-400 to-yellow-600" },
-  { name: "Sports", image: "S", color: "from-green-400 to-green-600" },
+  { name: "Men", slug: "men", image: "M", color: "from-blue-400 to-blue-600" },
+  { name: "Women", slug: "women", image: "W", color: "from-pink-400 to-pink-600" },
+  { name: "Kids", slug: "kids", image: "K", color: "from-yellow-400 to-yellow-600" },
+  { name: "Sports", slug: "sports", image: "S", color: "from-green-400 to-green-600" },
 ];
 
 export default function Categories() {
+  const router = useRouter();
+
   return (
     <section id="categories" className="py-20 bg-[#F8F9FA]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,9 +24,10 @@ export default function Categories() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-          {categories.map(({ name, image, color }) => (
+          {categories.map(({ name, slug, image, color }) => (
             <div
               key={name}
+              onClick={() => router.push(`/category/${slug}`)}
               className="group cursor-pointer flex flex-col items-center"
             >
               <div

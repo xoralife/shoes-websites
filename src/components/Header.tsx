@@ -1,22 +1,51 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Search, User, ShoppingBag, Menu, X } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Search, User, ShoppingBag, Menu, X, Heart, LogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
 
-const navLinks = ["Home", "New Arrivals", "Men", "Women", "Kids", "Sale"];
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "Men", href: "/category/men" },
+  { name: "Women", href: "/category/women" },
+  { name: "Kids", href: "/category/kids" },
+  { name: "Sports", href: "/category/sports" },
+  { name: "Sale", href: "/#featured" },
+];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { openCart, cartCount } = useCart();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const router = useRouter();
+  const { openCart, cartCount, wishlist } = useCart();
+  const { user, logout, isLoggedIn } = useAuth();
+  const userMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) setShowUserMenu(false);
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) router.push(`/?q=${encodeURIComponent(searchQuery.trim())}`);
+    setIsSearchOpen(false);
+    setSearchQuery("");
+  };
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 glass transition-shadow duration-300 ${isScrolled ? "shadow-lg" : "shadow-none"}`}>
@@ -38,13 +67,13 @@ export default function Header() {
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {navLinks.map(({ name, href }) => (
               <a
-                key={link}
-                href={link === "Home" ? "#" : `#${link.toLowerCase().replace(/\s+/g, "-")}`}
+                key={name}
+                href={href}
                 className="text-sm font-medium text-[#16213E] hover:text-[#E94560] transition-colors duration-200"
               >
-                {link}
+                {name}
               </a>
             ))}
           </nav>
@@ -59,11 +88,41 @@ export default function Header() {
             </button>
 
             <button
-              className="p-2 text-[#16213E] hover:text-[#E94560] transition-colors hidden sm:block"
-              aria-label="User"
+              onClick={() => router.push("/wishlist")}
+              className="p-2 text-[#16213E] hover:text-[#E94560] transition-colors hidden sm:block relative"
+              aria-label="Wishlist"
             >
-              <User size={20} />
+              <Heart size={20} />
+              {wishlist.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[#E94560] text-white text-xs w-4 h-4 flex items-center justify-center rounded-full font-bold">
+                  {wishlist.length}
+                </span>
+              )}
             </button>
+
+            <div className="relative hidden sm:block" ref={userMenuRef}>
+              <button
+                onClick={() => isLoggedIn ? setShowUserMenu(!showUserMenu) : router.push("/auth")}
+                className="p-2 text-[#16213E] hover:text-[#E94560] transition-colors"
+                aria-label="User"
+              >
+                <User size={20} />
+              </button>
+              {showUserMenu && isLoggedIn && (
+                <div className="absolute right-0 mt-2 w-48 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50 animate-scale-in">
+                  <div className="px-4 py-2 border-b border-gray-100">
+                    <p className="text-sm font-medium text-[#16213E]">{user?.name}</p>
+                    <p className="text-xs text-[#6C757D]">{user?.email}</p>
+                  </div>
+                  <button onClick={() => { router.push("/wishlist"); setShowUserMenu(false); }} className="w-full text-left px-4 py-2 text-sm text-[#16213E] hover:bg-gray-50 flex items-center gap-2">
+                    <Heart size={14} /> Wishlist
+                  </button>
+                  <button onClick={() => { logout(); setShowUserMenu(false); }} className="w-full text-left px-4 py-2 text-sm text-[#E94560] hover:bg-gray-50 flex items-center gap-2">
+                    <LogOut size={14} /> Logout
+                  </button>
+                </div>
+              )}
+            </div>
 
             <button
               className="p-2 text-[#16213E] hover:text-[#E94560] transition-colors relative"
@@ -81,39 +140,48 @@ export default function Header() {
         </div>
 
         {isSearchOpen && (
-          <div className="pb-4 animate-fade-in-up">
+          <form onSubmit={handleSearch} className="pb-4 animate-fade-in-up">
             <div className="relative">
               <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#6C757D]" />
               <input
                 type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search products..."
                 className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 focus:border-[#E94560] text-sm"
                 autoFocus
               />
             </div>
-          </div>
+          </form>
         )}
       </div>
 
       {isMenuOpen && (
         <div className="md:hidden border-t border-gray-100 bg-white animate-fade-in-up">
           <div className="px-4 py-3 space-y-2">
-            {navLinks.map((link) => (
+            {navLinks.map(({ name, href }) => (
               <a
-                key={link}
-                href="#"
+                key={name}
+                href={href}
                 className="block py-2 text-sm font-medium text-[#16213E] hover:text-[#E94560] transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {link}
+                {name}
               </a>
             ))}
             <a
-              href="#"
-              className="block py-2 text-sm font-medium text-[#16213E] hover:text-[#E94560] transition-colors sm:hidden"
+              href="/wishlist"
+              className="block py-2 text-sm font-medium text-[#16213E] hover:text-[#E94560] transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Account
+              Wishlist {wishlist.length > 0 && `(${wishlist.length})`}
+            </a>
+            <a
+              href={isLoggedIn ? "#" : "/auth"}
+              className="block py-2 text-sm font-medium text-[#16213E] hover:text-[#E94560] transition-colors"
+              onClick={(e) => { setIsMenuOpen(false); if (isLoggedIn) { e.preventDefault(); logout(); } }}
+            >
+              {isLoggedIn ? "Logout" : "Sign In"}
             </a>
           </div>
         </div>

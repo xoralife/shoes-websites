@@ -1,13 +1,15 @@
 "use client";
 
-import { X, ShoppingBag, Trash2, Plus, Minus } from "lucide-react";
+import { X, ShoppingBag, Trash2, Plus, Minus, ArrowRight } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import CouponInput from "./CouponInput";
 import ShippingBar from "./ShippingBar";
 
 export default function CartSidebar() {
   const { cart, isCartOpen, closeCart, removeFromCart, incrementQuantity, decrementQuantity, cartTotal } = useCart();
+  const router = useRouter();
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -115,8 +117,8 @@ export default function CartSidebar() {
               <span className="font-semibold text-[#16213E]">Total</span>
               <span className="text-xl font-bold text-[#16213E]">${cartTotal.toFixed(2)}</span>
             </div>
-            <button onClick={closeCart} className="w-full py-3.5 rounded-xl bg-[#1A1A2E] text-white font-medium text-sm hover:bg-[#0F3460] transition-all duration-300">
-            Proceed to Checkout
+            <button onClick={() => { closeCart(); router.push("/checkout"); }} className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-[#1A1A2E] text-white font-medium text-sm hover:bg-[#0F3460] transition-all duration-300">
+            Proceed to Checkout <ArrowRight size={16} />
           </button>
           </div>
         )}

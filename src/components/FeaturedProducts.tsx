@@ -1,15 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
 import ProductFilters from "./ProductFilters";
 import { products } from "@/data/products";
 
-export default function FeaturedProducts() {
-  const [activeFilter, setActiveFilter] = useState("All");
-  const filtered = activeFilter === "All"
+interface FeaturedProductsProps {
+  initialFilter?: string | null;
+  searchQuery?: string | null;
+}
+
+export default function FeaturedProducts({ initialFilter, searchQuery }: FeaturedProductsProps) {
+  const [activeFilter, setActiveFilter] = useState(initialFilter || "All");
+
+  useEffect(() => {
+    if (initialFilter) {
+      setActiveFilter(initialFilter);
+    }
+  }, [initialFilter]);
+
+  let filtered = activeFilter === "All"
     ? products
     : products.filter((p) => p.category === activeFilter);
+
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    filtered = filtered.filter((p) => p.name.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+  }
 
   return (
     <section id="featured" className="py-20 bg-white">

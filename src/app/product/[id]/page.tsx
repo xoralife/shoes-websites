@@ -1,8 +1,8 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
-import { ShoppingBag, Heart, Star, ArrowLeft, Minus, Plus, Truck, Shield, RotateCcw } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ShoppingBag, Heart, Star, ArrowLeft, Minus, Plus, Truck, Shield, RotateCcw, MessageCircle } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { getProductById, getRelatedProducts } from "@/data/products";
 import ProductCard from "@/components/ProductCard";
@@ -22,8 +22,29 @@ export default function ProductDetailPage() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [quantity, setQuantity] = useState(1);
   const [addedToCart, setAddedToCart] = useState(false);
+  const [reviews, setReviews] = useState<{ name: string; rating: number; comment: string; date: string }[]>([]);
+  const [reviewName, setReviewName] = useState("");
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewComment, setReviewComment] = useState("");
+
+  useEffect(() => {
+    const saved = localStorage.getItem(`solemate-reviews-${id}`);
+    if (saved) setReviews(JSON.parse(saved));
+  }, [id]);
 
   const product = getProductById(Number(id));
+
+  const addReview = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!reviewName.trim() || !reviewComment.trim()) return;
+    const newReview = { name: reviewName, rating: reviewRating, comment: reviewComment, date: new Date().toISOString() };
+    const updated = [newReview, ...reviews];
+    setReviews(updated);
+    localStorage.setItem(`solemate-reviews-${id}`, JSON.stringify(updated));
+    setReviewName("");
+    setReviewRating(5);
+    setReviewComment("");
+  };
 
   if (!product) {
     return (
@@ -224,6 +245,51 @@ export default function ProductDetailPage() {
               </div>
             </div>
           </div>
+
+          <section className="mt-16 bg-white rounded-3xl p-6 md:p-8 card-shadow">
+            <div className="flex items-center gap-2 mb-6">
+              <MessageCircle size={20} className="text-[#E94560]" />
+              <h2 className="text-xl md:text-2xl font-bold text-[#16213E]">Customer Reviews</h2>
+              <span className="text-sm text-[#6C757D]">({reviews.length})</span>
+            </div>
+
+            <form onSubmit={addReview} className="mb-8 p-6 bg-[#F8F9FA] rounded-2xl">
+              <h3 className="font-semibold text-[#16213E] text-sm mb-4">Write a Review</h3>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <input type="text" value={reviewName} onChange={(e) => setReviewName(e.target.value)} placeholder="Your Name" required className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20" />
+                <div className="flex items-center gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button key={star} type="button" onClick={() => setReviewRating(star)}>
+                      <Star size={18} className={star <= reviewRating ? "fill-[#FEEFC0] text-[#FEEFC0]" : "text-gray-300"} />
+                    </button>
+                  ))}
+                </div>
+                <textarea value={reviewComment} onChange={(e) => setReviewComment(e.target.value)} placeholder="Write your review..." required className="sm:col-span-2 px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#E94560]/20 min-h-[80px]" />
+              </div>
+              <button type="submit" className="mt-3 px-6 py-2.5 rounded-xl bg-[#E94560] text-white text-sm font-medium hover:bg-[#d63851] transition-all">Submit Review</button>
+            </form>
+
+            {reviews.length === 0 ? (
+              <p className="text-center text-[#6C757D] py-8">No reviews yet. Be the first to review!</p>
+            ) : (
+              <div className="space-y-4">
+                {reviews.map((review, i) => (
+                  <div key={i} className="p-4 rounded-xl bg-[#F8F9FA]">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-medium text-[#16213E] text-sm">{review.name}</span>
+                      <span className="text-xs text-[#6C757D]">{new Date(review.date).toLocaleDateString()}</span>
+                    </div>
+                    <div className="flex gap-0.5 mb-2">
+                      {Array.from({ length: 5 }).map((_, s) => (
+                        <Star key={s} size={14} className={s < review.rating ? "fill-[#FEEFC0] text-[#FEEFC0]" : "text-gray-300"} />
+                      ))}
+                    </div>
+                    <p className="text-sm text-[#6C757D]">{review.comment}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
 
           {related.length > 0 && (
             <section className="mt-16">
