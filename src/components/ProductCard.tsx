@@ -3,6 +3,7 @@
 import { Heart, Star, ShoppingBag, Eye, Share2 } from "lucide-react";
 import { useCart, type Product } from "@/context/CartContext";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import QuickViewModal from "./QuickViewModal";
 
 interface ProductCardProps {
@@ -13,6 +14,7 @@ const reviewCounts: Record<number, number> = {};
 
 export default function ProductCard({ product }: ProductCardProps) {
   const { addToCart, toggleWishlist, wishlist } = useCart();
+  const router = useRouter();
   const [showQuickView, setShowQuickView] = useState(false);
   const isWishlisted = wishlist.includes(product.id);
 
@@ -53,7 +55,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="group bg-white rounded-2xl card-shadow overflow-hidden card-hover">
+    <div className="group bg-white rounded-2xl card-shadow overflow-hidden card-hover cursor-pointer" onClick={() => router.push(`/product/${product.id}`)}>
       <div className="relative image-zoom">
         <div className="aspect-square bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-8">
           <svg viewBox="0 0 200 200" className="w-full h-full" fill="none">
@@ -76,7 +78,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className="absolute top-3 right-3 flex flex-col gap-1.5">
           <button
-            onClick={() => toggleWishlist(product.id)}
+            onClick={(e) => { e.stopPropagation(); toggleWishlist(product.id); }}
             className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all"
             aria-label="Toggle wishlist"
           >
@@ -86,6 +88,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             />
           </button>
           <button
+            onClick={(e) => e.stopPropagation()}
             className="w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all"
             aria-label="Share product"
           >
@@ -105,7 +108,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         <button
-          onClick={() => setShowQuickView(true)}
+          onClick={(e) => { e.stopPropagation(); setShowQuickView(true); }}
           className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm hover:bg-white transition-all opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
           aria-label="Quick view"
         >
@@ -139,7 +142,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         <button
-          onClick={() => addToCart(product)}
+          onClick={(e) => { e.stopPropagation(); addToCart(product); }}
           className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-white font-medium text-sm bg-[#E94560] hover:bg-[#d63851] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#E94560]/25"
         >
           <ShoppingBag size={16} />

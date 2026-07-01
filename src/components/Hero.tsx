@@ -10,9 +10,9 @@ export default function Hero() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
 
           <div className="space-y-6 animate-fade-in-up">
-            <span className="inline-block px-4 py-2 bg-[#E94560]/10 border border-[#E94560]/30 rounded-full text-[#E94560] text-sm font-semibold tracking-wider badge-pulse">
+            {/* <span className="inline-block px-4 py-2 bg-[#E94560]/10 border border-[#E94560]/30 rounded-full text-[#E94560] text-sm font-semibold tracking-wider badge-pulse">
               NEW COLLECTION 2026
-            </span>
+            </span> */}
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
               <span className="inline-block text-reveal overflow-hidden pr-1">Step Into</span>
